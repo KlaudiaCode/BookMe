@@ -3,11 +3,13 @@
 <ul>
   <% @items.each do |item| %>
     <li>
-      <%= item.title %>
+      <%= link_to item.title, item%>
       <%= item.author %>
       <%= item.description %>
+      <%= button_to 'DELETE', item, method: :delete %>
     </li>
   <% end %>
 </ul>
 
-<button type="button" class="btn btn-primary">Dodaj</button>
+<%= link_to 'DODAJ NOWY PRZEDMIOT', new_item_path%>
+
