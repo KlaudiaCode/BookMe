@@ -7,10 +7,19 @@
 <ul>
   <% @items.each do |item| %>
     <li>
-      <%= link_to item.title, item%>
-      <%= item.author %>
-      <%= item.description %>
-      <%= button_to 'DELETE', item, method: :delete %>
+
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to item.title, item%></h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <%= item.author %>
+          <%= item.description %>
+          <a href="#" class="btn btn-primary">Wymień się!</a>
+          <%= button_to 'Usuń', item, method: :delete %>
+        </div>
+      </div>
+  
     </li>
   <% end %>
 </ul>
