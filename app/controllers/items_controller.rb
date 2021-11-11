@@ -25,8 +25,10 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     if @item.destroy
       redirect_to items_path
+      flash[:success] = 'Przedmiot został usunięty'
     else
-      redirect_to @item, notice: 'Nie udało się usunąć oj'
+      redirect_to @item
+      flash[:warning] = 'Nie udało się usunąć oj'
     end
   end
 

@@ -1,5 +1,9 @@
 <h1>BOOK ME! - homepage </h1>
 
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
 <ul>
   <% @items.each do |item| %>
     <li>
@@ -12,4 +16,5 @@
 </ul>
 
 <%= link_to 'DODAJ NOWY PRZEDMIOT', new_item_path%>
+
 
