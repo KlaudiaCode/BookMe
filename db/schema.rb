@@ -16,9 +16,10 @@ ActiveRecord::Schema.define(version: 2021_11_11_142011) do
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "type"
     t.string "description"
     t.string "author"
-    t.boolean "type"
+    t.boolean "group"
   end
 
 end

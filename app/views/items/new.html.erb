@@ -2,11 +2,28 @@
 
 <%= form_with model: @item do |form| %>
   <div>
-    <%= form.label :tytuł %><br>
+    <%= form.label :title, 'Tytuł' %><br>
     <%= form.text_field :title %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.label :description, 'Opis' %><br>
+    <%= form.text_field :description %>
+  </div>
+
+  <div>
+    <%= form.label :author, 'Autor' %><br>
+    <%= form.text_field :author %>
+  </div>
+
+  <div>
+    <%= form.label :group, 'Książka' %><br>
+    <%= form.radio_button :group, false %>
+    <%= form.label :group, 'Gra' %><br>
+    <%= form.radio_button :group, true %>
+  </div>
+
+  <div>
+    <%= form.submit 'Dodaj' %>
   </div>
 <% end %>
