@@ -7,6 +7,7 @@ class AddAddresses < ActiveRecord::Migration[6.1]
       t.integer :num, null: false
       t.string :zip_code, null: false
       t.timestamps
+      t.belongs_to :user
     end
   end
 end
