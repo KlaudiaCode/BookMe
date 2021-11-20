@@ -10,6 +10,7 @@ class UpdateItemModel < ActiveRecord::Migration[6.1]
       t.boolean :tradable
 
       t.belongs_to :user
+      t.belongs_to :condition
     end
   end
 end

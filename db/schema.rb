@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 2021_11_20_191956) do
     t.integer "player_max"
     t.boolean "tradable"
     t.integer "user_id"
+    t.integer "condition_id"
+    t.index ["condition_id"], name: "index_items_on_condition_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
