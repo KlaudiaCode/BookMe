@@ -8,6 +8,8 @@ class UpdateItemModel < ActiveRecord::Migration[6.1]
       t.integer :player_min
       t.integer :player_max
       t.boolean :tradable
+
+      t.belongs_to :user
     end
   end
 end
