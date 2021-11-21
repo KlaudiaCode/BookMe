@@ -26,8 +26,8 @@
   </div>
 
   <div>
-    <%= form.label :condition, 'Stan' %><br>
-    <%= form.text_field :condition %>
+    <%= form.label :condition_id, 'Stan' %><br>
+    <%= form.collection_select :condition_id, Condition.order(:name),:id,:name %>
   </div>
 
   <div>

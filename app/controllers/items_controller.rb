@@ -13,9 +13,7 @@ class ItemsController < ApplicationController
 
   def create
     user = User.first
-    condition = Condition.last
     @item = Item.new(item_params)
-    @item.condition = condition
     @item.user = user
 
     if @item.save
@@ -40,6 +38,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :author, :description, :group, :publisher)
+    params.require(:item).permit(:title, :author, :description, :group, :publisher, :condition_id)
   end
 end
