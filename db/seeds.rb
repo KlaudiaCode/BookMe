@@ -5,3 +5,28 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.create(
+  name: 'Jo',
+  surname: 'Jo',
+  username: 'Jo',
+  email: 'Jo'
+)
+User.create(
+  name: 'Admin',
+  surname: 'Jo Admin',
+  username: 'Jo Admin',
+  email: 'Jo Admin',
+  is_admin: true
+)
+Condition.create(
+  name: 'Nowy'
+)
+Condition.create(
+  name: 'Dobry'
+)
+Condition.create(
+  name: 'Średni'
+)
+Condition.create(
+  name: 'Zły'
+)

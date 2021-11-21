@@ -12,11 +12,16 @@ class ItemsController < ApplicationController
   end
 
   def create
+    user = User.first
+    condition = Condition.last
     @item = Item.new(item_params)
+    @item.condition = condition
+    @item.user = user
 
     if @item.save
       redirect_to @item
     else
+      flash[:warning] = @item.errors.full_messages
       render :new
     end
   end
@@ -35,6 +40,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :author, :description, :group)
+    params.require(:item).permit(:title, :author, :description, :group, :publisher)
   end
 end

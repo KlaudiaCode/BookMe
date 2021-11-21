@@ -1,3 +1,7 @@
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
 <h1>Dodaj nowy przedmiot</h1>
 
 <%= form_with model: @item do |form| %>
@@ -14,6 +18,16 @@
   <div>
     <%= form.label :author, 'Autor' %><br>
     <%= form.text_field :author %>
+  </div>
+
+  <div>
+    <%= form.label :publisher, 'Wydawnictwo' %><br>
+    <%= form.text_field :publisher %>
+  </div>
+
+  <div>
+    <%= form.label :condition, 'Stan' %><br>
+    <%= form.text_field :condition %>
   </div>
 
   <div>
