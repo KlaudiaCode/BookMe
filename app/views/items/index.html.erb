@@ -12,25 +12,26 @@
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
-<ul>
+
+<div class="d-flex p-12 bd-highlight">
   <% @items.each do |item| %>
-    <li>
 
       <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="https://media-cldnry.s-nbcnews.com/image/upload/newscms/2020_25/3390425/board-games-kr-2x1-tease-200616.jpg" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title"><%= link_to item.title, item%></h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <%= item.author %>
-          <%= item.description %>
-          <a href="#" class="btn btn-primary">Wymień się!</a>
-          <%= button_to 'Usuń', item, method: :delete %>
+            <p class="card-text">
+              Opis: <%= item.description %> <br>
+              Stan: <%= item.condition %> <br>
+              Autor: <%= item.author %> <br>
+              <a href="#" class="btn btn-primary">Wymień się!</a>
+              <%= button_to 'Usuń', @item, method: :delete %>
+            </p>
         </div>
       </div>
-      <br>
-    </li>
+
   <% end %>
-</ul>
+</div>
 
 <%= link_to 'DODAJ NOWY PRZEDMIOT', new_item_path%>
 
