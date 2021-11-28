@@ -38,6 +38,11 @@
   </div>
 
   <div>
+    <%= form.label :image, 'Zdjęcia' %><br>
+    <%= form.file_field :image %>
+  </div>
+
+  <div>
     <%= form.submit 'Dodaj' %>
   </div>
 <% end %>

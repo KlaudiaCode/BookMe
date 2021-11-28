@@ -1,8 +1,10 @@
 <h1>BOOK ME! - info </h1>
 
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="https://media-cldnry.s-nbcnews.com/image/upload/newscms/2020_25/3390425/board-games-kr-2x1-tease-200616.jpg" alt="Card image cap">
-  <div class="card-body">
+    <% if @item.image.attached? %>
+      <img class="card-img-top" src="<%=(url_for(@item.image))%>" alt="obrazek">
+    <% end %>  
+    <div class="card-body">
     <h5 class="card-title"><%= @item.title%></h5>
       <p class="card-text">
         Opis: <%= @item.description %> <br>
