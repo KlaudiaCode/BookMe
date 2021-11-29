@@ -20,9 +20,12 @@
 <%= link_to 'Rezygnuj', items_path %>
 
 WYMIANA ZA: <br>
-
-<% @my_items.each do |i| %>
-  <%= i.title %> <br>
+<%= form_with model: @trade do |form| %>
+  <% @my_items.each do |i| %>
+    <%= form.radio_button :trader_item_id, i.id %> 
+    <%= form.label :trader_item_id, i.title %> <br>
+  <% end %>
+  <%= form.hidden_field :owner_item_id, value: @item.id %>
+  <%= form.hidden_field :owner_id, value: @item.user.id %>
+  <%= form.submit 'Wyślij ofertę'%>
 <% end %>
-
-<%= link_to 'Wyślij ofertę (brak linku)', items_path %>
