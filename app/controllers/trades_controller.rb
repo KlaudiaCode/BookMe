@@ -2,6 +2,10 @@ class TradesController < ApplicationController
 
   before_action :require_user
 
+  def index
+    @trades = Trade.where(trader_id: current_user.id)
+  end
+
   def new
     @item = Item.find(params[:item_id])
     @my_items = current_user.items

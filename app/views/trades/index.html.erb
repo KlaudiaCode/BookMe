@@ -1,0 +1,20 @@
+<h1 class="text-center mt-4">MOJE OFERTY</h1>
+
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+<div class="d-flex p-12 bd-highlight">
+  <% @trades.each do |trade| %>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= trade.status%></h5>
+            <p class="card-text">
+              Wymienię: <%= trade.owner_item.title %> <br>
+              Za: <%= trade.trader.username %> <br>
+              Od: <%= trade.trader_item.title %> <br>
+            </p>
+        </div>
+      </div>
+  <% end %>
+</div>
