@@ -13,7 +13,11 @@ class ItemsController < ApplicationController
   end
 
   def create
-    user = User.first
+    if logged_in?
+      user = current_user
+    else
+      user = User.first
+    end
     @item = Item.new(item_params)
     @item.user = user
 
