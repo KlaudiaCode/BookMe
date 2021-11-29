@@ -16,6 +16,7 @@ class ItemsController < ApplicationController
     if logged_in?
       user = current_user
     else
+      flash[:warning] = 'Musisz się zalogować aby dodawać przedmioty ' 
       user = User.first
     end
     @item = Item.new(item_params)
