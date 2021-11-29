@@ -1,4 +1,4 @@
-<h1>BOOK ME! - info </h1>
+<h1 class="text-center mt-4">WYMIANA</h1>
 
 <div class="card" style="width: 18rem;">
     <% if @item.image.attached? %>
@@ -13,12 +13,16 @@
         Stan: <%= @item.condition %> <br>
         Autor: <%= @item.author %> <br>
         Właściciel: <%= @item.user.username %> <br>
-        <% if @item.user.username != current_user %>
-          <%= link_to 'Wymień się!', new_trade_path(item_id: @item.id), class:"btn btn-primary" %>
-        <% end %>
-        <%= button_to 'Usuń', @item, method: :delete %>
       </p>
   </div>
 </div>
 
-<%= link_to 'Powrót', items_path %>
+<%= link_to 'Rezygnuj', items_path %>
+
+WYMIANA ZA: <br>
+
+<% @my_items.each do |i| %>
+  <%= i.title %> <br>
+<% end %>
+
+<%= link_to 'Wyślij ofertę (brak linku)', items_path %>

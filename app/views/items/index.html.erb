@@ -19,7 +19,7 @@
               Stan: <%= item.condition %> <br>
               Autor: <%= item.author %> <br>
               Właściciel: <%= item.user.username %> <br>
-              <%= link_to 'Wymień się!', new_trade_path, class:"btn btn-primary" %>
+              <%= link_to 'Wymień się!', new_trade_path(item_id: item.id), class:"btn btn-primary" %>
               <%= button_to 'Usuń', item, method: :delete %>
             </p>
         </div>
