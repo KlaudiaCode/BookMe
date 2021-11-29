@@ -1,3 +1,25 @@
 <h1 class="text-center mt-4">TWOJA PÓŁKA</h1>
 
-<%= @user.items%>
+<div class="d-flex p-12 bd-highlight">
+  <% @user.items.each do |item| %>
+
+      <div class="card" style="width: 18rem;">
+      <% if item.image.attached? %>
+        <img class="card-img-top" src="<%=(url_for(item.image))%>" alt="Zdjęcie oferty">
+        <% else %>
+        <%= image_tag "game.png", width: 200, class:"card-img-top" %>
+      <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to item.title, item%></h5>
+            <p class="card-text">
+              Opis: <%= item.description %> <br>
+              Stan: <%= item.condition %> <br>
+              Autor: <%= item.author %> <br>
+              <%= button_to 'Usuń', item, method: :delete %>
+            </p>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+<%= link_to 'DODAJ NOWY PRZEDMIOT', new_item_path, class:"btn btn-success"%>
