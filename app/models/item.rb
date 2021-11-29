@@ -4,4 +4,5 @@ class Item < ApplicationRecord
   has_many :item_genres
   has_many :genres, through: :item_genres
   has_one_attached :image
+  has_many :trades
 end
