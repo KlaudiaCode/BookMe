@@ -3,7 +3,11 @@ class ItemsController < ApplicationController
   before_action :require_user, only: [:new, :create, :destroy]
 
   def index
-    @items = Item.all
+    if logged_in?
+      @items = Item.where.not(user_id: current_user.id)
+    else
+      @items = Item.all
+    end
   end
 
   def show
