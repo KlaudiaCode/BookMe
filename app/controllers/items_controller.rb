@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   
+  before_action :require_user, only: [:new, :create, :destroy]
+
   def index
     @items = Item.all
   end
@@ -16,7 +18,7 @@ class ItemsController < ApplicationController
     if logged_in?
       user = current_user
     else
-      flash[:warning] = 'Musisz się zalogować aby dodawać przedmioty ' 
+      flash[:warning] = 'Musisz się zalogować aby dodawać przedmioty '
       user = User.first
     end
     @item = Item.new(item_params)
