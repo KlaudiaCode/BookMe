@@ -3,7 +3,8 @@ class TradesController < ApplicationController
   before_action :require_user
 
   def index
-    @trades = Trade.where(trader_id: current_user.id)
+    @my_trades = Trade.where(trader_id: current_user.id)
+    @received_trades = Trade.where(owner_id: current_user.id)
   end
 
   def new

@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 2021_11_29_164438) do
   end
 
   create_table "trades", force: :cascade do |t|
-    t.integer "status"
+    t.integer "status", default: 0
     t.integer "owner_id"
     t.integer "trader_id"
     t.integer "trader_item_id"

@@ -3,16 +3,31 @@
 <% flash.each do |key, value| %>
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
-
+MOJE
 <div class="d-flex p-12 bd-highlight">
-  <% @trades.each do |trade| %>
+  <% @my_trades.each do |trade| %>
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title"><%= trade.status%></h5>
             <p class="card-text">
-              Wymienię: <%= trade.owner_item.title %> <br>
-              Za: <%= trade.trader.username %> <br>
-              Od: <%= trade.trader_item.title %> <br>
+              Wymienię: <%= trade.trader_item.title %> <br>
+              Za: <%= trade.owner_item.title %> <br>
+              Od: <%= trade.owner.username %> <br>
+            </p>
+        </div>
+      </div>
+  <% end %>
+</div>
+NIEMOJE
+<div class="d-flex p-12 bd-highlight">
+  <% @received_trades.each do |trade| %>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= trade.status%></h5>
+            <p class="card-text">
+              Wymienię: <%= trade.trader_item.title %> <br>
+              Za: <%= trade.owner_item.title %> <br>
+              Od: <%= trade.owner.username %> <br>
             </p>
         </div>
       </div>
