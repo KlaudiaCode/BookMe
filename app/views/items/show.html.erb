@@ -13,10 +13,10 @@
         Stan: <%= @item.condition %> <br>
         Autor: <%= @item.author %> <br>
         Właściciel: <%= @item.user.username %> <br>
-        <% if @item.user.id != current_user.id %>
-          <%= link_to 'Wymień się!', new_trade_path(item_id: @item.id), class:"btn btn-primary" %>
-        <% else %>
+        <% if logged_in? && @item.user.id == current_user.id %>
           <%= button_to 'Usuń', @item, method: :delete %>
+        <% else %>
+          <%= link_to 'Wymień się!', new_trade_path(item_id: @item.id), class:"btn btn-primary" %>
         <% end %>
       </p>
   </div>
