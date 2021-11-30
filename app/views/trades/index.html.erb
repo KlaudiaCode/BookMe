@@ -29,8 +29,8 @@
               Wymienię: <%= trade.trader_item.title %> <br>
               Za: <%= trade.owner_item.title %> <br>
               Od: <%= trade.owner.username %> <br>
-              <%= link_to 'AKCEPTUJ', items_path, class:"btn btn-outline-primary"%>
-              <%= link_to 'ODRZUĆ', items_path, class:"btn btn-outline-danger"%>
+              <%= button_to 'AKCEPTUJ', trade_path(trade.id, status:2), method: :patch, class:"btn btn-outline-primary"%>
+              <%= button_to 'ODRZUĆ', trade_path(trade.id, status:3), method: :patch, class:"btn btn-outline-danger"%>
             </p>
         </div>
       </div>

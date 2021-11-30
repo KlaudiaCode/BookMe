@@ -25,6 +25,12 @@ class TradesController < ApplicationController
     end
   end
 
+  def update 
+    trade = Trade.find(params[:id])
+    trade.update(status:params[:status].to_i)
+    redirect_to trades_path
+  end
+
   private
 
   def trade_params
