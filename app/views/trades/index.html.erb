@@ -3,7 +3,7 @@
 <% flash.each do |key, value| %>
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
-MOJE
+<h5 class="text-center">WYSŁANE</h5>
 <div class="d-flex p-12 bd-highlight">
   <% @my_trades.each do |trade| %>
       <div class="card" style="width: 18rem;">
@@ -13,12 +13,13 @@ MOJE
               Wymienię: <%= trade.trader_item.title %> <br>
               Za: <%= trade.owner_item.title %> <br>
               Od: <%= trade.owner.username %> <br>
+              <%= link_to 'REZYGNUJ', items_path, class:"btn btn-outline-warning"%>
             </p>
         </div>
       </div>
   <% end %>
 </div>
-NIEMOJE
+<h5 class="text-center">OTRZYMANE</h5>
 <div class="d-flex p-12 bd-highlight">
   <% @received_trades.each do |trade| %>
       <div class="card" style="width: 18rem;">
@@ -28,6 +29,8 @@ NIEMOJE
               Wymienię: <%= trade.trader_item.title %> <br>
               Za: <%= trade.owner_item.title %> <br>
               Od: <%= trade.owner.username %> <br>
+              <%= link_to 'AKCEPTUJ', items_path, class:"btn btn-outline-primary"%>
+              <%= link_to 'ODRZUĆ', items_path, class:"btn btn-outline-danger"%>
             </p>
         </div>
       </div>
