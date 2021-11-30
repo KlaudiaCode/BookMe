@@ -31,6 +31,17 @@ class TradesController < ApplicationController
     redirect_to trades_path
   end
 
+  def destroy
+    @trade = Trade.find(params[:id])
+    if @trade.destroy
+      redirect_to trades_path
+      flash[:warning] = 'Oferta została cofnięta.'
+    else
+      redirect_to trades_path
+      flash[:warning] = 'Podczas rezygnacji wystąpił błąd. Spróbuj ponownie.'
+    end
+  end
+
   private
 
   def trade_params

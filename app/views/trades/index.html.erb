@@ -13,7 +13,7 @@
               Wymienię: <%= trade.trader_item.title %> <br>
               Za: <%= trade.owner_item.title %> <br>
               Od: <%= trade.owner.username %> <br>
-              <%= link_to 'REZYGNUJ', items_path, class:"btn btn-outline-warning"%>
+              <%= button_to 'REZYGNUJ', trade, method: :delete, class:"btn btn-outline-warning"%>
             </p>
         </div>
       </div>
@@ -26,9 +26,9 @@
         <div class="card-body">
           <h5 class="card-title"><%= trade.status%></h5>
             <p class="card-text">
-              Wymienię: <%= trade.trader_item.title %> <br>
-              Za: <%= trade.owner_item.title %> <br>
-              Od: <%= trade.owner.username %> <br>
+              Wymienię: <%= trade.owner_item.title %> <br>
+              Za: <%= trade.trader_item.title %> <br>
+              Od: <%= trade.trader.username %> <br>
               <%= button_to 'AKCEPTUJ', trade_path(trade.id, status:2), method: :patch, class:"btn btn-outline-primary"%>
               <%= button_to 'ODRZUĆ', trade_path(trade.id, status:3), method: :patch, class:"btn btn-outline-danger"%>
             </p>
