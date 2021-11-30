@@ -15,7 +15,7 @@
         <%= image_tag "game.png", width: 200, class:"card-img-top" %>
       <% end %>
         <div class="card-body">
-          <h5 class="card-title"><%= link_to item.title, item%></h5>
+          <h5 class="card-title"><%= link_to item.title, item, class:"link"%></h5>
             <p class="card-text">
               Opis: <%= item.description %> <br>
               Stan: <%= item.condition %> <br>
