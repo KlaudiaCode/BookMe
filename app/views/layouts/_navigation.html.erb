@@ -7,43 +7,36 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to "Oferty", trades_path, class:"nav-link"%>
-      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Przedmioty
+          Moje konto
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to "Dodaj nowy", new_item_path, class: "dropdown-item" %>
-          <%= link_to "Zobacz wszystkie", items_path, class: "dropdown-item" %>
+          <%= link_to "Dodaj nowe ogłoszenie", new_item_path, class: "dropdown-item" %>
+          <%= link_to "Moje ogłoszenia", items_path, class: "dropdown-item" %>
+          <%= link_to "Moje oferty", trades_path, class:"dropdown-item"%>
           <div class="dropdown-divider"></div>
           <%= link_to 'Galeria', items_path, class: "dropdown-item" %> 
+          
+          <% if logged_in? %>
+            <li class="nav-item">
+              <%= link_to current_user.username, user_path(current_user), class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= button_to 'Wyloguj', logout_path, class: "nav-link btn btn-outline-primary", method: :delete %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'Logowanie', login_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Rejestracja', new_user_path, class: "nav-link" %>
+            </li>
+          <% end%>
+
         </div>
       </li>
-      <% if logged_in? %>
-        <li class="nav-item">
-          <%= link_to current_user.username, user_path(current_user), class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= button_to 'Wyloguj', logout_path, class: "nav-link btn btn-outline-success", method: :delete %>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to 'Logowanie', login_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Rejestracja', new_user_path, class: "nav-link" %>
-        </li>
-      <% end%>
     </ul>
-      <%= text_field_tag :search, 
-                          params[:search], 
-                          placeholder: "Search Articles", 
-                          class: "form-control mr-sm-2" %>
-
-        <span class="input-group-btn">
-          <%= submit_tag "Search", class: 'btn btn-outline-success' %>
-        </span>
+    <%= link_to 'DODAJ NOWY PRZEDMIOT', new_item_path, class:"btn btn-outline-primary text-white"%>
   </div>
 </nav>

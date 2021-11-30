@@ -1,3 +1,5 @@
+<h1 class="text-center mt-4">OGŁOSZENIA</h1>
+
 <% flash.each do |key, value| %>
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
@@ -6,7 +8,7 @@
 <div class="d-flex p-12 bd-highlight">
   <% @items.each do |item| %>
 
-      <div class="card" style="width: 18rem;">
+      <div class="card px-2" style="width: 18rem;">
       <% if item.image.attached? %>
         <img class="card-img-top" src="<%=(url_for(item.image))%>" alt="Zdjęcie oferty">
         <% else %>
@@ -25,7 +27,4 @@
       </div>
   <% end %>
 </div>
-
-<%= link_to 'DODAJ NOWY PRZEDMIOT', new_item_path, class:"btn btn-success"%>
-
 

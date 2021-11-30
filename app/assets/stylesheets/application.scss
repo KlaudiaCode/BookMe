@@ -18,9 +18,11 @@
  ul {
   list-style-type: none;
 }
-
+.card{
+  margin: 10px;
+}
 .navbar {
-  background-color: rgb(128, 176, 240) !important;
+  background-color: rgba(12, 50, 99, 0.822) !important;
 }
 
 .nav-link {
@@ -73,6 +75,7 @@
 html,
 body {
   height: 100%;
+  background-color: rgba(234, 239, 245, 0.938);
 }
 
 #page-content {

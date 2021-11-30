@@ -2,47 +2,48 @@
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
-<h1>Dodaj nowy przedmiot</h1>
+<h1 class="text-center mt-4">DODAWANIE NOWEGO PRZEDMIOTU</h1>
+<div class="card text-center" style="width: 50rem;">
+  <%= form_with model: @item do |form| %>
+    <div>
+      <%= form.label :title, 'Tytuł' %>
+      <%= form.text_field :title %>
+    </div>
 
-<%= form_with model: @item do |form| %>
-  <div>
-    <%= form.label :title, 'Tytuł' %><br>
-    <%= form.text_field :title %>
-  </div>
+    <div>
+      <%= form.label :description, 'Opis' %>
+      <%= form.text_field :description %>
+    </div>
 
-  <div>
-    <%= form.label :description, 'Opis' %><br>
-    <%= form.text_field :description %>
-  </div>
+    <div>
+      <%= form.label :author, 'Autor' %>
+      <%= form.text_field :author %>
+    </div>
 
-  <div>
-    <%= form.label :author, 'Autor' %><br>
-    <%= form.text_field :author %>
-  </div>
+    <div>
+      <%= form.label :publisher, 'Wydawnictwo' %>
+      <%= form.text_field :publisher %>
+    </div>
 
-  <div>
-    <%= form.label :publisher, 'Wydawnictwo' %><br>
-    <%= form.text_field :publisher %>
-  </div>
+    <div>
+      <%= form.label :condition_id, 'Stan' %>
+      <%= form.collection_select :condition_id, Condition.order(:name),:id,:name %>
+    </div>
 
-  <div>
-    <%= form.label :condition_id, 'Stan' %><br>
-    <%= form.collection_select :condition_id, Condition.order(:name),:id,:name %>
-  </div>
+    <div>
+      <%= form.radio_button :group, false %>
+      <%= form.label :group, 'Książka' %>
+      <%= form.radio_button :group, true %>
+      <%= form.label :group, 'Gra' %>
+    </div>
 
-  <div>
-    <%= form.label :group, 'Książka' %><br>
-    <%= form.radio_button :group, false %>
-    <%= form.label :group, 'Gra' %><br>
-    <%= form.radio_button :group, true %>
-  </div>
+    <div>
+      <%= form.label :image, 'Zdjęcia' %>
+      <%= form.file_field :image %>
+    </div>
 
-  <div>
-    <%= form.label :image, 'Zdjęcia' %><br>
-    <%= form.file_field :image %>
-  </div>
-
-  <div>
-    <%= form.submit 'Dodaj' %>
-  </div>
-<% end %>
+    <div>
+      <%= form.submit 'Dodaj' %>
+    </div>
+  <% end %>
+</div>

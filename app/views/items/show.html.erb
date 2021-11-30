@@ -1,6 +1,6 @@
-<h1>BOOK ME! - info </h1>
+<h1 class="text-center mt-4">SZCZEGÓŁY OFERTY</h1>
 
-<div class="card" style="width: 18rem;">
+<div class="card px-2" style="width: 18rem;">
     <% if @item.image.attached? %>
       <img class="card-img-top" src="<%=(url_for(@item.image))%>" alt="obrazek">
     <% else %>
@@ -22,4 +22,4 @@
   </div>
 </div>
 
-<%= link_to 'Powrót', items_path %>
+<%= link_to 'Powrót', items_path %> <br>
