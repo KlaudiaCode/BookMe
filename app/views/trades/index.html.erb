@@ -8,12 +8,18 @@
   <% @my_trades.each do |trade| %>
       <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title"><%= trade.status%></h5>
+          <h5 class="card-title"><%= trade.status.capitalize%></h5>
             <p class="card-text">
               Wymienię: <%= trade.trader_item.title %> <br>
               Za: <%= trade.owner_item.title %> <br>
               Od: <%= trade.owner.username %> <br>
               <%= button_to 'REZYGNUJ', trade, method: :delete, class:"btn btn-outline-warning"%>
+              <% if trade.status == "accepted"%>
+                <div> __________________________ </div>
+                <h5> Dane kontaktowe </h5>
+                Email: <%= trade.owner.email %> <br>
+                Numer telefonu: <%= trade.owner.phone %>
+              <% end %>
             </p>
         </div>
       </div>
@@ -24,13 +30,19 @@
   <% @received_trades.each do |trade| %>
       <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title"><%= trade.status%></h5>
+          <h5 class="card-title"><%= trade.status.capitalize%></h5>
             <p class="card-text">
               Wymienię: <%= trade.owner_item.title %> <br>
               Za: <%= trade.trader_item.title %> <br>
               Od: <%= trade.trader.username %> <br>
               <%= button_to 'AKCEPTUJ', trade_path(trade.id, status:2), method: :patch, class:"btn btn-outline-primary"%>
               <%= button_to 'ODRZUĆ', trade_path(trade.id, status:3), method: :patch, class:"btn btn-outline-danger"%>
+              <% if trade.status == "accepted"%>
+                <div> __________________________ </div>
+                <h5> Dane kontaktowe </h5>
+                Email: <%= trade.trader.email %> <br>
+                Numer telefonu: <%= trade.trader.phone %>
+              <% end %>
             </p>
         </div>
       </div>
