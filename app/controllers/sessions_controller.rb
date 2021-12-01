@@ -9,9 +9,8 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_path
     else
-      # Flash don't work. Need to create session.errors to display login errors.
+      flash.now[:warning] = "Dane które podałeś są nieprawidłowe."
       render :new
-      flash[:warning] = "Dane które podałeś są nieprawidłowe."
     end
   end
 
