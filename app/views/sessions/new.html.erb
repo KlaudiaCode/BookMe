@@ -1,12 +1,12 @@
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
 <h1 class="text-center mt-4">LOGOWANIE</h1>
 
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-10">
-
-    <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %>"><%= value %></div>
-    <% end %>
+    <div class="col-6 card">
 
     <%= form_with(scope: :session, url: login_path) do |form| %>
 
@@ -21,11 +21,13 @@
       </div>
 
       <div>
-        <%= form.submit 'Zaloguj' %>
+        <br>
+        <%= form.submit 'Zaloguj' %> 
       </div>
     <% end %>
+    <%= link_to '[ Nie masz konta? Zarejestruj się! ]', new_user_path, class: "text-primary" %>
 
     </div>
   </div>
-  <%= link_to '[ Powrót do strony głównej ]', items_path, class: "text-info" %>
 </div>
+<%= link_to '[ Powrót do strony głównej ]', items_path, class: "text-info" %>

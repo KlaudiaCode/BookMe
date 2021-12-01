@@ -1,13 +1,13 @@
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
 <h1 class="text-center mt-4">REJESTRACJA</h1>
 
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-10">
-
-    <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %>"><%= value %></div>
-    <% end %>
-
+    <div class="col-6 card">
+    
     <%= form_with model: @user do |form| %>
       <div>
         <%= form.label :name, 'Imię' %><br>
@@ -35,11 +35,14 @@
       </div>
 
       <div>
+        <br>
         <%= form.submit 'Dodaj' %>
       </div>
     <% end %>
-
+    <%= link_to '[ Masz już konto? Zaloguj się! ]', login_path, class: "text-primary" %>
+    
     </div>
   </div>
-  <%= link_to '[ Powrót do strony głównej ]', items_path, class: "text-info" %>
 </div>
+<%= link_to '[ Powrót do strony głównej ]', items_path, class: "text-info" %>
+
