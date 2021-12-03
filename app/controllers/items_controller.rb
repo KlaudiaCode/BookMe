@@ -4,9 +4,9 @@ class ItemsController < ApplicationController
 
   def index
     if logged_in?
-      @items = Item.where.not(user_id: current_user.id)
+      @items = Item.search(params[:search], current_user.id)
     else
-      @items = Item.all
+      @items = Item.search(params[:search])
     end
   end
 
@@ -50,6 +50,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :author, :description, :group, :publisher, :condition_id, :image)
+    params.require(:item).permit(:title, :author, :description, :group, :publisher, :condition_id, :image, :search)
   end
 end

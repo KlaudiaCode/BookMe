@@ -18,6 +18,15 @@
  ul {
   list-style-type: none;
 }
+
+.footer {
+  position: sticky;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
 .link {
   text-decoration: none;
 }
