@@ -4,9 +4,9 @@ class ItemsController < ApplicationController
 
   def index
     if logged_in?
-      @items = Item.search(params[:search], current_user.id)
+      @items = Item.search(params[:search], current_user.id).order(params[:sort_type])
     else
-      @items = Item.search(params[:search])
+      @items = Item.search(params[:search]).order(params[:sort_type])
     end
   end
 
