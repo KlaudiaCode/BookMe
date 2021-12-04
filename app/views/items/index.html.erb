@@ -8,15 +8,17 @@
   <%= text_field_tag(:search, params[:search]) %>
   <%= submit_tag ("Szukaj") %>
 <% end %>
-
+SORTOWANIE
 Po nazwie:
 <%= link_to 'Rosnąco', items_path(sort_type: 'LOWER(title)'), class:"btn btn-primary" %>
 <%= link_to 'Malejąco', items_path(sort_type: 'LOWER(title) DESC'), class:"btn btn-primary" %>
 Po dacie dodania:
 <%= link_to 'Rosnąco', items_path(sort_type: 'created_at'), class:"btn btn-primary" %>
 <%= link_to 'Malejąco', items_path(sort_type: 'created_at DESC'), class:"btn btn-primary" %>
-
-
+FILTROWANIE
+<div data-controller="hello">
+  <button data-action="click->hello#test">pik</button>
+</div> 
 
 <div class="d-flex p-12 bd-highlight">
   <% @items.each do |item| %>
