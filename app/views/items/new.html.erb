@@ -3,7 +3,7 @@
 <% end %>
 
 <h1 class="text-center mt-4">DODAWANIE NOWEGO PRZEDMIOTU</h1>
-<div class="card text-center" style="width: 50rem;">
+<div data-controller="maps" class="card text-center" style="width: 50rem;">
   <%= form_with model: @item do |form| %>
     <div>
       <%= form.label :title, 'Tytuł' %>
@@ -41,6 +41,13 @@
       <%= form.label :image, 'Zdjęcia' %>
       <%= form.file_field :image %>
     </div>
+
+    <div>
+      <%= form.label :search %>
+      <%= form.search_field :search, name: nil, data: { 'maps-target': "location", action: "keydown->maps#preventSubmit" } %>
+    </div>
+
+    <%= content_tag :div, nil, data: { 'maps-target': "map" }, class: 'map' %>
 
     <div>
       <%= form.submit 'Dodaj' %>

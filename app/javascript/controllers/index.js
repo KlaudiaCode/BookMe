@@ -12,3 +12,10 @@ import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
 window.Stimulus = Application.start()
 const context = require.context("../controllers", true, /\.js$/)
 Stimulus.load(definitionsFromContext(context))
+
+window.dispatchMapsEvent = function (...args) {
+  const event = document.createEvent("Events")
+  event.initEvent("google-maps-callback", true, true)
+  event.args = args
+  window.dispatchEvent(event)
+}
