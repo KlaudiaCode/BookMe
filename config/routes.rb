@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   resources :items
   resources :users, except: :index
   resources :trades, only: [:new, :create, :index, :update, :destroy]
+
+  if Rails.env.development?
+    get 'components', to: 'sessions#components'
+  end
 end
