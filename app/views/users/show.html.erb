@@ -1,9 +1,11 @@
-<h1 class="text-center mt-4">TWOJA PÓŁKA</h1>
+<div class="d-flex flex-column">
+  <h1 class="text-center mt-4">TWOJA PÓŁKA</h1>
 
-<div class="d-flex p-5 bd-highlight">
-  <% @user.items.each do |item| %>
-    <%= render partial: 'items/item', locals: { item: item, can_edit: true, in_trade: false } %>
-  <% end %>
+  <div class="d-flex p-5 flex-wrap">
+    <% @user.items.each do |item| %>
+      <%= render partial: 'items/item', locals: { item: item, can_edit: true, in_trade: false } %>
+    <% end %>
+  </div>
+
+  <%= link_to 'DODAJ NOWY PRZEDMIOT', new_item_path, class:"btn btn-success"%>
 </div>
-
-<%= link_to 'DODAJ NOWY PRZEDMIOT', new_item_path, class:"btn btn-success"%>
