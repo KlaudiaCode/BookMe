@@ -1,31 +1,33 @@
 <h1 class="text-center mt-4">WYMIANA</h1>
 
-<div class="card" style="width: 18rem;">
-    <% if @item.image.attached? %>
-      <img class="card-img-top" src="<%=(url_for(@item.image))%>" alt="obrazek">
-    <% else %>
-      <%= image_tag "game.png", width: 200, class:"card-img-top" %>
-    <% end %>  
-    <div class="card-body">
-    <h5 class="card-title"><%= @item.title%></h5>
-      <p class="card-text">
-        Opis: <%= @item.description %> <br>
-        Stan: <%= @item.condition %> <br>
-        Autor: <%= @item.author %> <br>
-        Właściciel: <%= @item.user.username %> <br>
-      </p>
+<div class="d-flex justify-content-center align-items-center">
+  <%= render partial: 'items/item', locals: { item: @item, can_edit: false, in_trade: true } %>
+  <i class="bi-arrow-repeat display-1 p-3"></i>
+  <div class="bg-white w-25 p-3" data-controller="trade">
+    <%= form_with model: @trade do |form| %>
+      <%= form.hidden_field :owner_item_id, value: @item.id %>
+      <%= form.hidden_field :owner_id, value: @item.user.id %>
+      <%= form.hidden_field :trader_item_id, value: 0, 'data-trade-target': 'itemIdField' %>
+      <h2>Wybierz przedmiot</h2>
+      <div id="image_picker" class="w-100 ratio ratio-1x1">
+        <div class="w-100 h-100 d-flex flex-wrap justify-content-between align-items-between p-2 overflow-auto">
+          <% @my_items.each do |item| %>
+            <div data-action="click->trade#choose" data-trade-name-param="<%= item.title %>" data-trade-id-param="<%= item.id %>" class="bg-white d-flex flex-column" style="width: 30%; height: 30%">
+              <% if item.image.attached? %>
+                <img src="<%=(url_for(item.image))%>" class="img-fluid w-100 h-100 trade_image" alt="Zdjęcie oferty">
+              <% else %>
+                <%= image_tag "game.png", class:"img-fluid w-100 h-100 trade_image" %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <h4>Wybrany przedmiot: </h4>
+      <h4 data-trade-target="chosenText"></h4>
+      <%= form.submit 'Wyślij ofertę'%>
+    <% end %>
   </div>
+
 </div>
 
 <%= link_to 'Rezygnuj', items_path %>
-
-WYMIANA ZA: <br>
-<%= form_with model: @trade do |form| %>
-  <% @my_items.each do |i| %>
-    <%= form.radio_button :trader_item_id, i.id %> 
-    <%= form.label :trader_item_id, i.title %> <br>
-  <% end %>
-  <%= form.hidden_field :owner_item_id, value: @item.id %>
-  <%= form.hidden_field :owner_id, value: @item.user.id %>
-  <%= form.submit 'Wyślij ofertę'%>
-<% end %>

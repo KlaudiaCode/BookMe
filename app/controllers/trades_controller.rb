@@ -1,5 +1,4 @@
 class TradesController < ApplicationController
-
   before_action :require_user
 
   def index
@@ -19,27 +18,26 @@ class TradesController < ApplicationController
     if @trade.save
       flash[:success] = 'Oferta została wysłana do właściciela.'
       redirect_to items_path
-    else 
+    else
       flash[:warning] = @trade.errors.full_messages
       render :new
     end
   end
 
-  def update 
+  def update
     trade = Trade.find(params[:id])
-    trade.update(status:params[:status].to_i)
+    trade.update(status: params[:status].to_i)
     redirect_to trades_path
   end
 
   def destroy
     @trade = Trade.find(params[:id])
     if @trade.destroy
-      redirect_to trades_path
       flash[:warning] = 'Oferta została cofnięta.'
     else
-      redirect_to trades_path
       flash[:warning] = 'Podczas rezygnacji wystąpił błąd. Spróbuj ponownie.'
     end
+    redirect_to trades_path
   end
 
   private
@@ -47,5 +45,4 @@ class TradesController < ApplicationController
   def trade_params
     params.require(:trade).permit(:owner_id, :owner_item_id, :trader_item_id)
   end
-
 end

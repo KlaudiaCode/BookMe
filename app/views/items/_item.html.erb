@@ -1,7 +1,7 @@
 <div class="d-flex flex-column bg-white m-2 p-3" style="width: 23%">
   <% if can_edit %>
     <div class="position-absolute align-self-end m-2" style="z-index: 3">
-      <%= button_to @item, class: 'btn btn-secondary', method: :delete do %>
+      <%= button_to item, class: 'btn btn-secondary', method: :delete do %>
         <i class="bi-trash"></i>
       <% end %>
     </div>
@@ -16,7 +16,7 @@
     </div>
     <div class="mt-3">
       <h5><%= item.title %></h5>
-      <% if false %>
+      <% if in_trade %>
         <span>Opis: <%= item.description %></span><br>
         <span>Stan: <%= item.condition %></span><br>
         <span>Autor: <%= item.author %></span><br>
@@ -24,7 +24,7 @@
       <span>Właściciel: <%= item.user.username %></span>
     </div>
   <% end %>
-  <% if !can_edit %>
+  <% if !can_edit && !in_trade%>
     <%= link_to 'Wymień się!', new_trade_path(item_id: item.id), class:"btn btn-primary mt-3" %>
   <% end %>
 </div>

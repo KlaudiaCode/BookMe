@@ -22,7 +22,7 @@ FILTROWANIE
 
 <div class="d-flex p-5 flex-wrap">
   <% @items.each do |item| %>
-    <%= render partial: 'item', locals: { item: item, can_edit: false } %>
+    <%= render partial: 'item', locals: { item: item, can_edit: false, in_trade: false } %>
   <% end %>
 </div>
 
