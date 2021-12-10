@@ -22,24 +22,7 @@ FILTROWANIE
 
 <div class="d-flex p-12 bd-highlight">
   <% @items.each do |item| %>
-
-      <div class="card px-2" style="width: 18rem;">
-      <% if item.image.attached? %>
-        <img class="card-img-top" src="<%=(url_for(item.image))%>" alt="Zdjęcie oferty">
-        <% else %>
-        <%= image_tag "game.png", width: 200, class:"card-img-top" %>
-      <% end %>
-        <div class="card-body">
-          <h5 class="card-title"><%= link_to item.title, item, class:"link"%></h5>
-            <p class="card-text">
-              Opis: <%= item.description %> <br>
-              Stan: <%= item.condition %> <br>
-              Autor: <%= item.author %> <br>
-              Właściciel: <%= item.user.username %> <br>
-              <%= link_to 'Wymień się!', new_trade_path(item_id: item.id), class:"btn btn-primary" %>
-            </p>
-        </div>
-      </div>
+    <%= render partial: 'item', locals: { item: item } %>
   <% end %>
 </div>
 
