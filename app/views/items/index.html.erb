@@ -20,7 +20,7 @@ FILTROWANIE
   <button data-action="click->hello#test">pik</button>
 </div> 
 
-<div class="d-flex p-5 bd-highlight">
+<div class="d-flex p-5 flex-wrap">
   <% @items.each do |item| %>
     <%= render partial: 'item', locals: { item: item, can_edit: false } %>
   <% end %>
