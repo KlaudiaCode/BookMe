@@ -29,6 +29,7 @@ class ItemsController < ApplicationController
     @item.user = user
 
     if @item.save
+      flash[:success] = 'Przedmiot został dodany'
       redirect_to @item
     else
       flash[:warning] = @item.errors.full_messages

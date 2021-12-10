@@ -1,9 +1,5 @@
 <h1 class="text-center mt-4">OGŁOSZENIA</h1>
 
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
-
 <%= form_tag(items_path, method: :get) do %>
   <%= text_field_tag(:search, params[:search]) %>
   <%= submit_tag ("Szukaj") %>

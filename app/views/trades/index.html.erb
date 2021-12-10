@@ -1,8 +1,5 @@
 <h1 class="text-center mt-4">MOJE OFERTY</h1>
 
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
 <h5 class="text-center">WYSŁANE</h5>
 <div class="d-flex p-12 bd-highlight">
   <% @my_trades.each do |trade| %>

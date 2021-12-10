@@ -6,6 +6,8 @@ class Item < ApplicationRecord
   has_one_attached :image
   has_many :trades
 
+  validates :title, :author, presence: true
+
   scope :without_logged_user, ->(user_id) { where.not('user_id = ?', user_id) }
 
   def self.search(search = nil, current_user_id = 0)
