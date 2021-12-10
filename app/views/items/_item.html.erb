@@ -1,4 +1,11 @@
 <div class="d-flex flex-column bg-white w-25 m-2 p-3">
+  <% if can_edit %>
+    <div class="position-absolute align-self-end m-2" style="z-index: 3">
+      <%= button_to @item, class: 'btn btn-secondary', method: :delete do %>
+        <i class="bi-trash"></i>
+      <% end %>
+    </div>
+  <% end %>
   <%= link_to item, class: 'text-decoration-none text-dark col' do %>
     <div class="w-100 ratio ratio-4x3">
       <% if item.image.attached? %>
