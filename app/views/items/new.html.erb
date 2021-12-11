@@ -1,52 +1,54 @@
 <h1 class="text-center mt-4">DODAWANIE NOWEGO PRZEDMIOTU</h1>
-<div data-controller="maps" class="card text-center" style="width: 50rem;">
-  <%= form_with model: @item do |form| %>
-    <div>
-      <%= form.label :title, 'Tytuł' %>
-      <%= form.text_field :title %>
-    </div>
+<div data-controller="maps" class="row justify-content-center mb-5">
+  <div class="col-8 bg-white p-4">
+    <%= form_with model: @item do |form| %>
+      <div class="mb-4">
+        <%= form.label :title, 'Tytuł', class: 'form-label' %>
+        <%= form.text_field :title, class: 'form-control bg-light' %>
+      </div>
 
-    <div>
-      <%= form.label :description, 'Opis' %>
-      <%= form.text_field :description %>
-    </div>
+      <div class="mb-4">
+        <%= form.label :condition_id, 'Zdjęcia', class: 'form-label' %>
+        <%= form.file_field :image, class: 'form-control bg-light' %>
+      </div>
 
-    <div>
-      <%= form.label :author, 'Autor' %>
-      <%= form.text_field :author %>
-    </div>
+      <div class="mb-4">
+        <%= form.label :description, 'Opis', class: 'form-label' %>
+        <%= form.text_area :description, rows: 5, class: 'form-control bg-light' %>
+      </div>
 
-    <div>
-      <%= form.label :publisher, 'Wydawnictwo' %>
-      <%= form.text_field :publisher %>
-    </div>
+      <div class="mb-4">
+        <%= form.label :author, 'Autor', class: 'form-label' %>
+        <%= form.text_field :author, class: 'form-control bg-light' %>
+      </div>
 
-    <div>
-      <%= form.label :condition_id, 'Stan' %>
-      <%= form.collection_select :condition_id, Condition.order(:name),:id,:name %>
-    </div>
+      <div class="mb-4">
+        <%= form.label :publisher, 'Wydawnictwo', class: 'form-label' %>
+        <%= form.text_field :publisher, class: 'form-control bg-light' %>
+      </div>
 
-    <div>
-      <%= form.radio_button :group, false %>
-      <%= form.label :group, 'Książka' %>
-      <%= form.radio_button :group, true %>
-      <%= form.label :group, 'Gra' %>
-    </div>
+      <div class="mb-4">
+        <%= form.label :condition_id, 'Stan', class: 'form-label' %>
+        <%= form.collection_select :condition_id, Condition.order(:name), :id, :name, {}, { class: 'form-select bg-light' }  %>
+      </div>
 
-    <div>
-      <%= form.label :image, 'Zdjęcia' %>
-      <%= form.file_field :image %>
-    </div>
+      <div class="mb-4">
+        <%= form.radio_button :group, false, class: 'btn-check', id: 'book_radio' %>
+        <label class="btn btn-outline-primary" for="book_radio">Książka</label>
+        <%= form.radio_button :group, true, class: 'btn-check', id: 'game_radio' %>
+        <label class="btn btn-outline-primary" for="game_radio">Gra</label>
+      </div>
 
-    <div>
-      <%= form.label :search %>
-      <%= form.search_field :search, name: nil, data: { 'maps-target': "location", action: "keydown->maps#preventSubmit" } %>
-    </div>
+      <div class="mb-4">
+        <%= form.label :search, 'Lokalizacja', class: 'form-label' %>
+        <%= form.search_field :search, name: nil, data: { 'maps-target': "location", action: "keydown->maps#preventSubmit" }, class: 'form-control' %>
+      </div>
 
-    <%= content_tag :div, nil, data: { 'maps-target': "map" }, class: 'map' %>
+      <%= content_tag :div, nil, data: { 'maps-target': "map" }, class: 'map mb-4' %>
 
-    <div>
-      <%= form.submit 'Dodaj' %>
-    </div>
-  <% end %>
+      <div class="mb-4">
+        <%= form.submit 'Dodaj', class: 'btn btn-primary w-100' %>
+      </div>
+    <% end %>
+  </div>
 </div>
