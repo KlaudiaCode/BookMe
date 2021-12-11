@@ -18,7 +18,11 @@
   <body class="d-flex flex-column">
     <%= render 'layouts/navigation' %>
     <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %>"><%= value %></div>
+      <div class="alert alert-dismissible fade show alert-<%= key %>">
+        <i class="bi-info-circle-fill"></i>
+        <%= value %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
     <% end %>
     <div class="col d-flex flex-column px-5">
       <%= yield %>
