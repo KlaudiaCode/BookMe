@@ -1,24 +1,47 @@
-<h1 class="text-center mt-4">OGŁOSZENIA</h1>
+<div class="d-flex flex-column px-5">
+  <h1 class="text-center mt-4">OGŁOSZENIA</h1>
 
-<%= form_tag(items_path, method: :get) do %>
-  <%= text_field_tag(:search, params[:search]) %>
-  <%= submit_tag ("Szukaj") %>
-<% end %>
-SORTOWANIE
-Po nazwie:
-<%= link_to 'Rosnąco', items_path(sort_type: 'LOWER(title)'), class:"btn btn-primary" %>
-<%= link_to 'Malejąco', items_path(sort_type: 'LOWER(title) DESC'), class:"btn btn-primary" %>
-Po dacie dodania:
-<%= link_to 'Rosnąco', items_path(sort_type: 'created_at'), class:"btn btn-primary" %>
-<%= link_to 'Malejąco', items_path(sort_type: 'created_at DESC'), class:"btn btn-primary" %>
-FILTROWANIE
-<div data-controller="hello">
-  <button data-action="click->hello#test">pik</button>
-</div> 
-
-<div class="d-flex p-5 flex-wrap">
-  <% @items.each do |item| %>
-    <%= render partial: 'item', locals: { item: item, can_edit: false, in_trade: false } %>
+  <%= form_tag(items_path, method: :get, class: 'row g-0') do %>
+    <div class="col-9">
+      <%= text_field_tag(:search, params[:search], placeholder: 'Szukaj...', class: 'col form-control') %>
+    </div>
+    <div class="col-2">
+      <select id="inputState" class="form-select">
+        <option selected>Miasto</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="col-1">
+      <%= button_tag(type: 'submit', class: "btn btn-outline-primary") do %>
+        Szukaj
+        <i class="bi-search"></i>
+      <% end %>
+    </div>
   <% end %>
-</div>
 
+  <div class="d-flex justify-content-end gap-1 align-items-center py-3">
+    SORTOWANIE
+    <%= link_to items_path(sort_type: 'LOWER(title)'), class:"btn btn-primary" do %>
+      <i class="bi-arrow-up"></i>
+      Nazwa
+    <% end %>
+    <%= link_to items_path(sort_type: 'LOWER(title) DESC'), class:"btn btn-primary" do %>
+      <i class="bi-arrow-down"></i>
+      Nazwa
+    <% end %>
+    <%= link_to items_path(sort_type: 'created_at'), class:"btn btn-primary" do %>
+      <i class="bi-arrow-up"></i>
+      Data
+    <% end %>
+    <%= link_to items_path(sort_type: 'created_at DESC'), class:"btn btn-primary" do %>
+      <i class="bi-arrow-down"></i>
+      Data
+    <% end %>
+  </div>
+
+  <div class="d-flex flex-wrap">
+    <% @items.each do |item| %>
+      <%= render partial: 'item', locals: { item: item, can_edit: false, in_trade: false } %>
+    <% end %>
+  </div>
+</div>
