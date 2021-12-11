@@ -1,29 +1,26 @@
 <h1 class="text-center mt-4">LOGOWANIE</h1>
 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-6 card">
+<div class="row justify-content-center mb-5">
+  <div class="col-8 bg-white p-4">
 
     <%= form_with(scope: :session, url: login_path) do |form| %>
-
-      <div>
-        <%= form.label :email, 'E-mail' %><br>
-        <%= form.text_field :email %>
+      <div class="mb-3">
+        <%= form.label :email, 'E-mail', class: 'form-label' %>
+        <%= form.text_field :email, class: 'form-control bg-light'  %>
       </div>
 
-      <div>
-        <%= form.label :password, 'Hasło' %><br>
-        <%= form.password_field :password %>
+      <div class="mb-3">
+        <%= form.label :password, 'Hasło', class: 'form-label' %>
+        <%= form.password_field :password, class: 'form-control bg-light'  %>
       </div>
 
-      <div>
-        <br>
-        <%= form.submit 'Zaloguj' %> 
+      <div class="mb-3">
+        <%= form.submit 'Zaloguj się', class: 'btn btn-primary w-100' %> 
       </div>
     <% end %>
+    
     <%= link_to '[ Nie masz konta? Zarejestruj się! ]', new_user_path, class: "text-primary" %>
 
-    </div>
   </div>
 </div>
 <%= link_to '[ Powrót do strony głównej ]', items_path, class: "text-info" %>

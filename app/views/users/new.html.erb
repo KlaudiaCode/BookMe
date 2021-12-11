@@ -1,43 +1,41 @@
 <h1 class="text-center mt-4">REJESTRACJA</h1>
-
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-6 card">
+<div class="row justify-content-center mb-5">
+  <div class="col-8 bg-white p-4">
     
     <%= form_with model: @user do |form| %>
-      <div>
-        <%= form.label :name, 'Imię' %><br>
-        <%= form.text_field :name %>
+      <div class="mb-3">
+        <%= form.label :name, 'Imię', class: 'form-label' %>
+        <%= form.text_field :name, class: 'form-control bg-light'  %>
       </div>
 
-      <div>
-        <%= form.label :surname, 'Nazwisko' %><br>
-        <%= form.text_field :surname %>
+      <div class="mb-3">
+        <%= form.label :surname, 'Nazwisko', class: 'form-label' %>
+        <%= form.text_field :surname, class: 'form-control bg-light'  %>
       </div>
 
-      <div>
-        <%= form.label :username, 'Login' %><br>
-        <%= form.text_field :username %>
+      <div class="mb-3">
+        <%= form.label :username, 'Login', class: 'form-label' %>
+        <%= form.text_field :username, class: 'form-control bg-light'  %>
       </div>
 
-      <div>
-        <%= form.label :email, 'E-mail' %><br>
-        <%= form.text_field :email %>
+      <div class="mb-3">
+        <%= form.label :email, 'E-mail', class: 'form-label' %>
+        <%= form.text_field :email, class: 'form-control bg-light'  %>
       </div>
 
-      <div>
-        <%= form.label :password, 'Hasło' %><br>
-        <%= form.password_field :password %>
+      <div class="mb-3">
+        <%= form.label :password, 'Hasło', class: 'form-label' %>
+        <%= form.password_field :password, class: 'form-control bg-light'  %>
       </div>
 
-      <div>
+      <div class="mb-3">
         <br>
-        <%= form.submit 'Dodaj' %>
+        <%= form.submit 'Utwórz konto', class: 'btn btn-primary w-100' %>
       </div>
     <% end %>
+
     <%= link_to '[ Masz już konto? Zaloguj się! ]', login_path, class: "text-primary" %>
     
-    </div>
   </div>
 </div>
 <%= link_to '[ Powrót do strony głównej ]', items_path, class: "text-info" %>
