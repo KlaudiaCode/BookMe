@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   resources :items
   resources :users, except: :index
+  get 'users/:id/shelf', to: 'users#shelf'
   resources :trades, only: [:new, :create, :index, :update, :destroy]
 
   if Rails.env.development?
