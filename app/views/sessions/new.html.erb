@@ -18,9 +18,11 @@
         <%= form.submit 'Zaloguj się', class: 'btn btn-primary w-100' %> 
       </div>
     <% end %>
-    
-    <%= link_to '[ Nie masz konta? Zarejestruj się! ]', new_user_path, class: "text-primary" %>
+    Nie masz konta?
+    <%= link_to 'Zarejestruj się!', new_user_path, class: "text-primary" %>
 
   </div>
 </div>
-<%= link_to '[ Powrót do strony głównej ]', items_path, class: "text-info" %>
+<%= link_to items_path, class: "text-info link pt-5 mt-5" do %>
+  <i class="bi-arrow-left-short">Powrót do strony głównej</i>
+<% end %>

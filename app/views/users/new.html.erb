@@ -33,10 +33,12 @@
         <%= form.submit 'Utwórz konto', class: 'btn btn-primary w-100' %>
       </div>
     <% end %>
-
-    <%= link_to '[ Masz już konto? Zaloguj się! ]', login_path, class: "text-primary" %>
+     Masz już konto?
+    <%= link_to 'Zaloguj się!', login_path, class: "text-primary" %>
     
   </div>
 </div>
-<%= link_to '[ Powrót do strony głównej ]', items_path, class: "text-info" %>
+<%= link_to items_path, class: "text-info link" do %>
+<i class="bi-arrow-left-short">Powrót do strony głównej</i>
+<% end %>
 
