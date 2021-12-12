@@ -29,7 +29,7 @@ class Item < ApplicationRecord
   has_many :item_genres
   has_many :genres, through: :item_genres
   has_many_attached :images
-  has_many :trades
+  has_many :trades, dependent: :destroy
 
   validates :title, :author, :description, :latitude, :longitude, :group, :publisher, presence: true
 

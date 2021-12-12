@@ -7,7 +7,7 @@
     <div class="bg-white p-3 ms-2 col-3" data-controller="trade">
       <%= form.hidden_field :owner_item_id, value: @item.id %>
       <%= form.hidden_field :owner_id, value: @item.user.id %>
-      <%= form.hidden_field :trader_item_id, value: 0, 'data-trade-target': 'itemIdField' %>
+      <%= form.hidden_field :trader_item_id, value: -1, 'data-trade-target': 'itemIdField' %>
       <h5>Wybierz przedmiot na wymianę:</h5>
       <div id="image_picker" class="w-100 ratio ratio-1x1">
         <div class="w-100 h-100 row p-2 overflow-auto">
