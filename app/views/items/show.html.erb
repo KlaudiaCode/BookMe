@@ -3,11 +3,15 @@
 <div class="row gx-5 justify-content-center">
   <div class="col-5">
     <div class="p-3 bg-white d-flex flex-column">
-      <% if @item.image.attached? %>
-        <img class="card-img-top" src="<%=(url_for(@item.image))%>" alt="obrazek">
+
+      <% if @item.images.attached? %>
+        <% @item.images.each do |image| %>
+          <img class="card-img-top" src="<%=(url_for(image))%>" alt="obrazek">
+        <% end %>
       <% else %>
         <%= image_tag "game.png", width: 200, class:"card-img-top" %>
       <% end %>
+
       <h3 class="mt-3"><%= @item.title %></h3>
       <h6 class="mt-3 align-self-end">Wydawnictwo: <%= @item.publisher %></h6>
     </div>

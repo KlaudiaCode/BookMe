@@ -3,7 +3,7 @@ class Item < ApplicationRecord
   belongs_to :condition
   has_many :item_genres
   has_many :genres, through: :item_genres
-  has_one_attached :image
+  has_many_attached :images
   has_many :trades
 
   validates :title, :author, presence: true

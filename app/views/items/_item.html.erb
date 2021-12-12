@@ -9,8 +9,8 @@
     <% end %>
     <%= link_to item, class: 'text-decoration-none text-dark col' do %>
       <div class="w-100 ratio ratio-4x3">
-        <% if item.image.attached? %>
-          <img src="<%=(url_for(item.image))%>" class="img-fluid" alt="Zdjęcie oferty">
+        <% if item.images.attached? %>
+          <img src="<%=(url_for(item.images[0]))%>" class="img-fluid" alt="Zdjęcie oferty">
         <% else %>
           <%= image_tag "game.png", class:"img-fluid" %>
         <% end %>

@@ -14,8 +14,8 @@
           <% @my_items.each do |item| %>
             <div data-action="click->trade#choose" data-trade-name-param="<%= item.title %>" data-trade-id-param="<%= item.id %>" class="bg-white col-4">
               <div class="ratio ratio-1x1">
-                <% if item.image.attached? %>
-                  <img src="<%=(url_for(item.image))%>" class="img-fluid w-100 h-100 trade_image" alt="Zdjęcie oferty">
+                <% if item.images.attached? %>
+                  <img src="<%=(url_for(item.images[0]))%>" class="img-fluid w-100 h-100 trade_image" alt="Zdjęcie oferty">
                 <% else %>
                   <%= image_tag "game.png", class:"img-fluid w-100 h-100 trade_image" %>
                 <% end %>
