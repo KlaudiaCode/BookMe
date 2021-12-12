@@ -44,6 +44,14 @@
         <%= form.search_field :search, name: nil, data: { 'maps-target': "location", action: "keydown->maps#preventSubmit" }, class: 'form-control' %>
       </div>
 
+      <div class="mb-4">
+        <%= form.hidden_field :latitude, class: 'form-control bg-light', data: { 'maps-target': 'latitude' } %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.hidden_field :longitude, class: 'form-control bg-light', data: { 'maps-target': 'longitude' } %>
+      </div>
+
       <%= content_tag :div, nil, data: { 'maps-target': "map" }, class: 'map mb-4' %>
 
       <div class="mb-4">

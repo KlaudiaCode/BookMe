@@ -1,7 +1,7 @@
 import { Controller} from "stimulus"
 
 export default class extends Controller {
-  static targets = ["location", "map"]
+  static targets = ["location", "map", "latitude", "longitude"]
 
   connect() {
     if (typeof (google) != "undefined"){
@@ -13,12 +13,16 @@ export default class extends Controller {
     this.map()
     this.marker()
     this.autocomplete()
+    console.log('init')
   }
 
   map() {
     if(this._map == undefined) {
       this._map = new google.maps.Map(this.mapTarget, {
-        center: new google.maps.LatLng(100, 100),
+        center: new google.maps.LatLng(
+          this.latitudeTarget.value,
+          this.longitudeTarget.value
+        ),
         zoom: 17
       })
     }
@@ -32,8 +36,8 @@ export default class extends Controller {
         anchorPoint: new google.maps.Point(0,0)
       })
       let mapLocation = {
-        lat: parseFloat(100),
-        lng: parseFloat(100)
+        lat: parseFloat(this.latitudeTarget.value),
+        lng: parseFloat(this.longitudeTarget.value)
       }
       this._marker.setPosition(mapLocation)
       this._marker.setVisible(true)
@@ -66,8 +70,8 @@ export default class extends Controller {
     this.marker().setPosition(place.geometry.location)
     this.marker().setVisible(true)
 
-    // this.latitudeTarget.value = place.geometry.location.lat()
-    // this.longitudeTarget.value = place.geometry.location.lng()
+    this.latitudeTarget.value = place.geometry.location.lat()
+    this.longitudeTarget.value = place.geometry.location.lng()
   }
 
   preventSubmit(e) {
