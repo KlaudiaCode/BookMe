@@ -31,7 +31,7 @@ class Item < ApplicationRecord
   has_many_attached :images
   has_many :trades, dependent: :destroy
 
-  validates :title, :author, :description, :latitude, :longitude, :publisher, presence: true
+  validates :title, :author, :description, :publisher, presence: true
 
   scope :without_logged_user, ->(user_id) { where.not('user_id = ?', user_id) }
 
