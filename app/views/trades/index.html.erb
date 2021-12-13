@@ -35,7 +35,7 @@
               <%= button_to 'AKCEPTUJ', trade_path(trade.id, status:2), method: :patch, class:"btn btn-outline-primary"%>
               <%= button_to 'ODRZUĆ', trade_path(trade.id, status:3), method: :patch, class:"btn btn-outline-danger"%>
               <% if trade.status == "accepted"%>
-                <div> __________________________ </div>
+                <hr/>
                 <h5> Dane kontaktowe </h5>
                 Email: <%= trade.trader.email %> <br>
                 Numer telefonu: <%= trade.trader.phone %>

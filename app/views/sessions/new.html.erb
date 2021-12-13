@@ -1,7 +1,7 @@
 <h1 class="text-center mt-4">LOGOWANIE</h1>
 
-<div class="row justify-content-center mb-5 flex-fill">
-  <div class="col-8 bg-white p-4 d-flex flex-column justify-content-center rounded">
+<div class="row justify-content-center mb-5">
+  <div class="col-8 bg-white p-4 rounded">
 
     <%= form_with(scope: :session, url: login_path) do |form| %>
       <div class="mb-3">
@@ -20,9 +20,5 @@
     <% end %>
     Nie masz konta?
     <%= link_to 'Zarejestruj się!', new_user_path, class: "text-primary" %>
-
   </div>
 </div>
-<%= link_to items_path, class: "text-info link" do %>
-  <i class="bi-arrow-left-short">Powrót do strony głównej</i>
-<% end %>

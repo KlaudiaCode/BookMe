@@ -8,8 +8,5 @@ Rails.application.routes.draw do
   resources :users, except: :index
   get 'users/:id/shelf', to: 'users#shelf'
   resources :trades, only: [:new, :create, :index, :update, :destroy]
-
-  if Rails.env.development?
-    get 'components', to: 'sessions#components'
-  end
+  
 end
