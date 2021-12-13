@@ -36,6 +36,7 @@ pl:
         name: 'Imię'
         surname: 'Nazwisko'
         password: 'Hasło'
+        username: 'Login'
       item:
         title: 'Tytuł'
         description: 'Opis'
@@ -60,8 +61,13 @@ pl:
               blank: 'musi zostać podane'
             surname:
               blank: 'musi zostać podane'
+            username:
+              blank: 'musi zostać podany'
+              invalid: 'niepoprawny'
+              taken: 'już istnieje. Wybierz inny.'
             password:
               blank: 'musi zostać podane'
             email:
               blank: 'musi zostać podany'
               invalid: 'niepoprawny'
+              taken: 'już istnieje'

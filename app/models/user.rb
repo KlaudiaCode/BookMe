@@ -19,6 +19,7 @@ class User < ApplicationRecord
   has_secure_password
   has_many :trades
 
-  validates :name, :surname, :email, presence: true
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :name, :surname, :username, :email, presence: true
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
+  validates :username, uniqueness: true
 end
