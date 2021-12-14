@@ -47,7 +47,12 @@ export default class extends Controller {
 
   autocomplete() {
     if (this._autocomplete == undefined) {
-      this._autocomplete = new google.maps.places.Autocomplete(this.locationTarget)
+      const options = {
+        fields: ["geometry"],
+        types: ['(regions)'],
+        componentRestrictions: { country: 'pl' }
+      }
+      this._autocomplete = new google.maps.places.Autocomplete(this.locationTarget, options)
       this._autocomplete.bindTo('bounds', this.map())
       this._autocomplete.setFields(['address_components', 'geometry', 'icon', 'name'])
       this._autocomplete.addListener('place_changed', this.locationChanged.bind(this))
