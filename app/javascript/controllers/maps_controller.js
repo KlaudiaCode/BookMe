@@ -56,11 +56,6 @@ export default class extends Controller {
       this._autocomplete = new google.maps.places.Autocomplete(this.locationTarget, options)
       this._autocomplete.bindTo('bounds', this.map())
       this._autocomplete.addListener('place_changed', this.locationChanged.bind(this))
-      this._autocomplete.addListener('place_changed', () => {
-        if (!this._autocomplete.getPlace().hasOwnProperty('name')) {
-          this.correctPlaceTarget.value = true
-        }
-      })
     }
     return this._autocomplete
   }
@@ -73,6 +68,8 @@ export default class extends Controller {
       // pressed the Enter key, or the Place Details request failed.
       window.alert("No details available for input: '" + place.name + "'");
       return;
+    } else {
+      this.correctPlaceTarget.value = true
     }
 
     this.map().fitBounds(place.geometry.viewport)

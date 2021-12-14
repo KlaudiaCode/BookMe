@@ -26,8 +26,8 @@ class ItemsController < ApplicationController
       user = User.first
     end
 
+    @item = Item.new(item_params)
     if ActiveModel::Type::Boolean.new.cast(params[:item][:correct])
-      @item = Item.new(item_params)
       @item.user = user
   
       if @item.save
