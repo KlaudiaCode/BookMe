@@ -35,8 +35,12 @@
       </div>
     </div>
     <div class="row">
-      <div class="p-3 bg-white d-flex flex-column">
-        <%= image_tag "http://maps.google.com/maps/api/staticmap?size=700x300&sensor=false&zoom=12&center=#{@item.place}&key=#{ENV['MAPS_API_KEY']}" %>
+      <div class="bg-white ratio ratio-1x1" data-controller="itemShow">
+        <div class="p-3">
+          <%= hidden_field_tag :latitude, @item.latitude, data: { 'itemShow-target': 'latitude' } %>
+          <%= hidden_field_tag :longitude, @item.longitude, data: { 'itemShow-target': 'longitude' } %>
+          <%= content_tag :div, nil, data: { 'itemShow-target': "map" }, class: 'map w-100 h-100' %>
+        </div>
       </div>
     </div>
   </div>
