@@ -6,25 +6,25 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto flex-grow-1">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Moje konto
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to "Dodaj nowe ogłoszenie", new_item_path, class: "dropdown-item" %>
-          <%= link_to "Moje ogłoszenia", items_path, class: "dropdown-item" %>
-          <%= link_to "Moje oferty", trades_path, class:"dropdown-item"%>
-          <div class="dropdown-divider"></div>
-          <%= link_to 'Galeria', items_path, class: "dropdown-item" %> 
-          
-          <% if logged_in? %>
-            <li class="nav-item">
-              <%= link_to current_user.username, user_path(current_user), class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= button_to 'Wyloguj', logout_path, class: "nav-link btn btn-outline-primary", method: :delete %>
-            </li>
+        <% if logged_in? %>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Moje konto
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <b><%= link_to user_path(current_user), class: "dropdown-item" do %>
+              <i class="bi-person-circle"></i>
+              <%= current_user.username %>
+            <% end %></b>
+            <div class="dropdown-divider"></div>
+            <%= link_to "Profil", user_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Oferty", trades_path, class:"dropdown-item"%>
+            <%= link_to new_item_path, class: "dropdown-item" do %> 
+              Dodaj <i class="bi-book"></i> /
+              <i class="bi-dice-3"></i>
+            <% end %>
+            <%= button_to 'Wyloguj', logout_path, class: "dropdown-item text-danger", method: :delete %>
           <% else %>
             <li class="nav-item">
               <%= link_to 'Logowanie', login_path, class: "nav-link" %>
@@ -37,6 +37,6 @@
         </div>
       </li>
     </ul>
-    <%= link_to 'DODAJ NOWY PRZEDMIOT', new_item_path, class:"btn btn-outline-primary text-white"%>
+    <%= link_to 'DODAJ NOWY PRZEDMIOT', new_item_path, class:"btn btn-primary text-white"%>
   </div>
 </nav>

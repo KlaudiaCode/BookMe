@@ -4,10 +4,10 @@
   <div class="row justify-content-center align-items-center">
     <%= render partial: 'items/item', locals: { item: @item, can_edit: false, in_trade: true } %>
     <i class="bi-arrow-repeat display-1 p-3 col-1"></i>
-    <div class="bg-white p-3 ms-2 col-3" data-controller="trade">
+    <div class="bg-white p-3 ms-2 col-3 rounded shadow" data-controller="trade">
       <%= form.hidden_field :owner_item_id, value: @item.id %>
       <%= form.hidden_field :owner_id, value: @item.user.id %>
-      <%= form.hidden_field :trader_item_id, value: 0, 'data-trade-target': 'itemIdField' %>
+      <%= form.hidden_field :trader_item_id, value: -1, 'data-trade-target': 'itemIdField' %>
       <h5>Wybierz przedmiot na wymianę:</h5>
       <div id="image_picker" class="w-100 ratio ratio-1x1">
         <div class="w-100 h-100 row p-2 overflow-auto">
@@ -38,5 +38,5 @@
 <% end %>
 
 <%= link_to items_path, class:'link mt-5 pt-5' do %>
-  <i class="bi-arrow-left-short">Rezygnuj</i>
+  <i class="bi-arrow-left-short">Zrezygnuj</i>
 <% end %>

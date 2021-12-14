@@ -1,5 +1,40 @@
+<h1 class="text-center mt-4">
+  <% if current_user.username == @user.username %>
+    TWOJE KONTO
+  <% else %>
+  <%= @user.username %>
+  <% end %>
+</h1>
+
+<div class='d-flex'>
+  <div class="bg-white rounded p-4 flex-grow-1 shadow">
+    <h6><i class="bi-geo-alt-fill"></i> Poznań, Wilda</h6>
+    <h6> <%= 'Cześć jestem Katty, lubię grać w gry planszowe. :) ' %></h6>
+    <% if current_user.username == @user.username %>
+      <hr/>
+      <h5>Dane osobowe</h5>
+      <h6>Imię: <%= @user.name %></h6>
+      <h6>Nazwisko: <%= @user.surname %></h6>
+      <h6>Email: <%= @user.email %></h6>
+      <%= button_to class: 'btn btn-primary w-100' do %> 
+        <i class="bi-pencil-fill"></i> Edytuj
+      <% end %>
+    <% end %>
+  </div>
+
+  <% if current_user.username == @user.username %>
+    <div class="bg-white rounded p-4 ms-4 shadow">
+      <h5>Zmiana hasła</h5>
+      <h6>Obecne: </h6>
+      <h6>Nowe: </h6>
+      <%= button_to 'Zmień hasło', class: 'btn btn-primary w-100' %>
+    </div>
+  <% end %>
+</div>
+
+
 <div class="d-flex flex-column">
-  <h1 class="text-center mt-4">TWOJA PÓŁKA</h1>
+  <h1 class="text-center mt-4">PÓŁKA</h1>
 
   <div class="row g-3 mb-5">
     <% @user.items.each do |item| %>

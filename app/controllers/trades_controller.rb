@@ -20,6 +20,9 @@ class TradesController < ApplicationController
       redirect_to items_path
     else
       flash[:warning] = @trade.errors.full_messages
+      @item = Item.find(params[:trade][:owner_item_id])
+      @my_items = current_user.items
+      @trade = Trade.new
       render :new
     end
   end

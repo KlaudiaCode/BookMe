@@ -1,5 +1,5 @@
 <div class="col-3">
-  <div class="d-flex flex-column bg-white p-3">
+  <div class="d-flex flex-column bg-white p-3 shadow rounded">
     <% if can_edit %>
       <div class="position-absolute align-self-end m-2" style="z-index: 3">
         <%= button_to item, class: 'btn btn-secondary', method: :delete do %>
@@ -22,7 +22,14 @@
           <span><b>Stan:</b> <%= item.condition %></span><br>
           <span><b>Autor:</b> <%= item.author %></span><br>
         <% end %>
-        <span><b>Właściciel:</b> <%= item.user.username %></span>
+
+        <% if item.group == false %>
+          <i class="bi-book"></i> 
+        <% else %>
+          <i class="bi-dice-3"></i>
+        <% end %>
+
+        <span> <i>Dodano <%= item.created_at.to_date %> przez <%= item.user.username %></i></span>
       </div>
     <% end %>
     <% if !can_edit && !in_trade%>
