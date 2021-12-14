@@ -25,14 +25,20 @@ class ItemsController < ApplicationController
       flash[:warning] = 'Musisz się zalogować aby dodawać przedmioty '
       user = User.first
     end
-    @item = Item.new(item_params)
-    @item.user = user
 
-    if @item.save
-      flash[:success] = 'Przedmiot został dodany'
-      redirect_to @item
+    if ActiveModel::Type::Boolean.new.cast(params[:item][:correct])
+      @item = Item.new(item_params)
+      @item.user = user
+  
+      if @item.save
+        flash[:success] = 'Przedmiot został dodany'
+        redirect_to @item
+      else
+        flash[:warning] = @item.errors.full_messages
+        render :new
+      end
     else
-      flash[:warning] = @item.errors.full_messages
+      flash[:warning] = 'Wybierz poprawną lokalizację'
       render :new
     end
   end

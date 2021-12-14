@@ -1,7 +1,7 @@
 import { Controller} from "stimulus"
 
 export default class extends Controller {
-  static targets = ["location", "map", "latitude", "longitude"]
+  static targets = ["location", "map", "latitude", "longitude", "correctPlace"]
 
   connect() {
     if (typeof (google) != "undefined"){
@@ -22,7 +22,7 @@ export default class extends Controller {
           this.latitudeTarget.value,
           this.longitudeTarget.value
         ),
-        zoom: 17
+        zoom: 13
       })
     }
     return this._map
@@ -55,6 +55,11 @@ export default class extends Controller {
       this._autocomplete.bindTo('bounds', this.map())
       this._autocomplete.setFields(['address_components', 'geometry', 'icon', 'name'])
       this._autocomplete.addListener('place_changed', this.locationChanged.bind(this))
+      this._autocomplete.addListener('place_changed', () => {
+        if (!this._autocomplete.getPlace().hasOwnProperty('name')) {
+          this.correctPlaceTarget.value = true
+        }
+      })
     }
     return this._autocomplete
   }
