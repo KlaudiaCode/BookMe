@@ -8,15 +8,18 @@
 
 <div class='d-flex'>
   <div class="bg-white rounded p-4 flex-grow-1 shadow">
+    <h6><i class="bi-geo-alt-fill"></i> Poznań, Wilda</h6>
+    <h6> <%= 'Cześć jestem Katty, lubię grać w gry planszowe. :) ' %></h6>
     <% if current_user.username == @user.username %>
+      <hr/>
       <h5>Dane osobowe</h5>
       <h6>Imię: <%= @user.name %></h6>
       <h6>Nazwisko: <%= @user.surname %></h6>
       <h6>Email: <%= @user.email %></h6>
-      <%= button_to 'Zmień dane', class: 'btn btn-primary w-100' %>
+      <%= button_to class: 'btn btn-primary w-100' do %> 
+        <i class="bi-pencil-fill"></i> Edytuj
+      <% end %>
     <% end %>
-    <h6>Adres: <%= @user %></h6>
-    <h6>BIO: <%= 'Cześć jestem Tomek, lubię grać w gry planszowe. :) ' %></h6>
   </div>
 
   <% if current_user.username == @user.username %>
@@ -28,6 +31,7 @@
     </div>
   <% end %>
 </div>
+
 
 <div class="d-flex flex-column">
   <h1 class="text-center mt-4">PÓŁKA</h1>
