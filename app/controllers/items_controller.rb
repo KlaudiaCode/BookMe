@@ -4,9 +4,9 @@ class ItemsController < ApplicationController
 
   def index
     if logged_in?
-      @items = Item.search(params[:search], current_user.id).order(params[:sort_type])
+      @items = Item.search(params[:search], params[:place], current_user.id).order(params[:sort_type])
     else
-      @items = Item.search(params[:search]).order(params[:sort_type])
+      @items = Item.search(params[:search], params[:place]).order(params[:sort_type])
     end
   end
 
@@ -25,14 +25,20 @@ class ItemsController < ApplicationController
       flash[:warning] = 'Musisz się zalogować aby dodawać przedmioty '
       user = User.first
     end
-    @item = Item.new(item_params)
-    @item.user = user
 
-    if @item.save
-      flash[:success] = 'Przedmiot został dodany'
-      redirect_to @item
+    @item = Item.new(item_params)
+    if ActiveModel::Type::Boolean.new.cast(params[:item][:correct])
+      @item.user = user
+  
+      if @item.save
+        flash[:success] = 'Przedmiot został dodany'
+        redirect_to @item
+      else
+        flash[:warning] = @item.errors.full_messages
+        render :new
+      end
     else
-      flash[:warning] = @item.errors.full_messages
+      flash[:warning] = 'Wybierz poprawną lokalizację'
       render :new
     end
   end
@@ -51,6 +57,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :author, :description, :group, :publisher, :condition_id, :search, :latitude, :longitude, images: [])
+    params.require(:item).permit(:title, :author, :description, :group, :publisher, :condition_id, :place, :latitude, :longitude, images: [])
   end
 end

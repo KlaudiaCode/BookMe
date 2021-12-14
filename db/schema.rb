@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_12_150303) do
+ActiveRecord::Schema.define(version: 2021_12_14_103853) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2021_12_12_150303) do
     t.integer "condition_id"
     t.decimal "latitude"
     t.decimal "longitude"
+    t.string "place"
     t.index ["condition_id"], name: "index_items_on_condition_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end

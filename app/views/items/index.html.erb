@@ -2,13 +2,10 @@
 
 <%= form_tag(items_path, method: :get, class: 'row g-0') do %>
   <div class="col-9">
-    <%= text_field_tag(:search, params[:search], placeholder: 'Szukaj...', class: 'col form-control') %>
+    <%= text_field_tag :search, params[:search], placeholder: 'Szukaj...', class: 'col form-control' %>
   </div>
-  <div class="col-2">
-    <select id="inputState" class="form-select">
-      <option selected>Miasto</option>
-      <option>...</option>
-    </select>
+  <div class="col-2" data-controller="search">
+    <%= search_field_tag :place, params[:place], data: { 'search-target': "location", action: "keydown->search#preventSubmit" }, class: 'form-control' %>
   </div>
   <div class="col-1">
     <%= button_tag(type: 'submit', class: "btn btn-outline-primary") do %>

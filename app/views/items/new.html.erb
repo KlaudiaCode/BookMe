@@ -40,17 +40,13 @@
       </div>
 
       <div class="mb-4">
-        <%= form.label :search, 'Lokalizacja', class: 'form-label' %>
-        <%= form.search_field :search, name: nil, data: { 'maps-target': "location", action: "keydown->maps#preventSubmit" }, class: 'form-control' %>
+        <%= form.label :place, 'Lokalizacja', class: 'form-label' %>
+        <%= form.search_field :place, data: { 'maps-target': "location", action: "keydown->maps#preventSubmit" }, class: 'form-control' %>
       </div>
 
-      <div class="mb-4">
-        <%= form.hidden_field :latitude, class: 'form-control bg-light', data: { 'maps-target': 'latitude' } %>
-      </div>
-
-      <div class="mb-4">
-        <%= form.hidden_field :longitude, class: 'form-control bg-light', data: { 'maps-target': 'longitude' } %>
-      </div>
+      <%= form.hidden_field :latitude, data: { 'maps-target': 'latitude' } %>
+      <%= form.hidden_field :longitude, data: { 'maps-target': 'longitude' } %>
+      <%= form.hidden_field :correct, value: false, data: { 'maps-target': 'correctPlace' } %>
 
       <%= content_tag :div, nil, data: { 'maps-target': "map" }, class: 'map mb-4' %>
 

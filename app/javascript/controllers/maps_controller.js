@@ -1,7 +1,7 @@
 import { Controller} from "stimulus"
 
 export default class extends Controller {
-  static targets = ["location", "map", "latitude", "longitude"]
+  static targets = ["location", "map", "latitude", "longitude", "correctPlace"]
 
   connect() {
     if (typeof (google) != "undefined"){
@@ -13,7 +13,6 @@ export default class extends Controller {
     this.map()
     this.marker()
     this.autocomplete()
-    console.log('init')
   }
 
   map() {
@@ -23,7 +22,9 @@ export default class extends Controller {
           this.latitudeTarget.value,
           this.longitudeTarget.value
         ),
-        zoom: 17
+        zoom: 13,
+        clickableIcons: false,
+        mapTypeControl: false
       })
     }
     return this._map
@@ -47,9 +48,13 @@ export default class extends Controller {
 
   autocomplete() {
     if (this._autocomplete == undefined) {
-      this._autocomplete = new google.maps.places.Autocomplete(this.locationTarget)
+      const options = {
+        fields: ["geometry"],
+        types: ['(regions)'],
+        componentRestrictions: { country: 'pl' }
+      }
+      this._autocomplete = new google.maps.places.Autocomplete(this.locationTarget, options)
       this._autocomplete.bindTo('bounds', this.map())
-      this._autocomplete.setFields(['address_components', 'geometry', 'icon', 'name'])
       this._autocomplete.addListener('place_changed', this.locationChanged.bind(this))
     }
     return this._autocomplete
@@ -63,6 +68,8 @@ export default class extends Controller {
       // pressed the Enter key, or the Place Details request failed.
       window.alert("No details available for input: '" + place.name + "'");
       return;
+    } else {
+      this.correctPlaceTarget.value = true
     }
 
     this.map().fitBounds(place.geometry.viewport)
