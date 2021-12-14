@@ -22,7 +22,9 @@ export default class extends Controller {
           this.latitudeTarget.value,
           this.longitudeTarget.value
         ),
-        zoom: 13
+        zoom: 13,
+        clickableIcons: false,
+        mapTypeControl: false
       })
     }
     return this._map
@@ -53,7 +55,6 @@ export default class extends Controller {
       }
       this._autocomplete = new google.maps.places.Autocomplete(this.locationTarget, options)
       this._autocomplete.bindTo('bounds', this.map())
-      this._autocomplete.setFields(['address_components', 'geometry', 'icon', 'name'])
       this._autocomplete.addListener('place_changed', this.locationChanged.bind(this))
       this._autocomplete.addListener('place_changed', () => {
         if (!this._autocomplete.getPlace().hasOwnProperty('name')) {
