@@ -1,6 +1,6 @@
 <h1 class="text-center mt-4">DODAWANIE NOWEGO PRZEDMIOTU</h1>
 <div data-controller="maps" class="row justify-content-center mb-5">
-  <div class="col-8 bg-white p-4">
+  <div class="col-8 bg-white p-4 rounded">
     <%= form_with model: @item do |form| %>
       <div class="mb-4">
         <%= form.label :title, 'Tytuł', class: 'form-label' %>
@@ -40,8 +40,8 @@
       </div>
 
       <div class="mb-4">
-        <%= form.label :search, 'Lokalizacja', class: 'form-label' %>
-        <%= form.search_field :search, name: nil, data: { 'maps-target': "location", action: "keydown->maps#preventSubmit" }, class: 'form-control' %>
+        <%= form.label :place, 'Lokalizacja', class: 'form-label' %>
+        <%= form.search_field :place, data: { 'maps-target': "location", action: "keydown->maps#preventSubmit" }, class: 'form-control' %>
       </div>
 
       <div class="mb-4">

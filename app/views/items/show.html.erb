@@ -31,11 +31,12 @@
 
         <h3 class="mt-3"><%= @item.title %></h3>
         <h6 class="mt-3 align-self-end">Wydawnictwo: <%= @item.publisher %></h6>
+        <h6 class="mt-3 align-self-end">Place: <%= @item.place %></h6>
       </div>
     </div>
     <div class="row">
       <div class="p-3 bg-white d-flex flex-column">
-        <%= image_tag "http://maps.google.com/maps/api/staticmap?size=700x300&sensor=false&zoom=12&center=gorzow&key=#{ENV['MAPS_API_KEY']}" %>
+        <%= image_tag "http://maps.google.com/maps/api/staticmap?size=700x300&sensor=false&zoom=12&center=#{@item.place}&key=#{ENV['MAPS_API_KEY']}" %>
       </div>
     </div>
   </div>
