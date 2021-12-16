@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :items
   resources :users, except: :index
   get 'users/:id/shelf', to: 'users#shelf'
+  post 'users/change_password', to: 'users#change_password'
+
   resources :trades, only: [:new, :create, :index, :update, :destroy]
   
 end
