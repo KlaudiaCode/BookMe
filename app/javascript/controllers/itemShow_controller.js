@@ -21,7 +21,7 @@ export default class extends Controller {
           this.latitudeTarget.value,
           this.longitudeTarget.value
         ),
-        zoom: 13,
+        zoom: 12,
         clickableIcons: false,
         mapTypeControl: false
       })

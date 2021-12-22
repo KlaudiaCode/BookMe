@@ -41,11 +41,11 @@
 
       <div class="mb-4">
         <%= form.label :place, 'Lokalizacja', class: 'form-label' %>
-        <%= form.search_field :place, data: { 'maps-target': "location", action: "keydown->maps#preventSubmit" }, class: 'form-control' %>
+        <%= form.search_field :place, value: @user.place, data: { 'maps-target': "location", action: "keydown->maps#preventSubmit" }, class: 'form-control' %>
       </div>
 
-      <%= form.hidden_field :latitude, data: { 'maps-target': 'latitude' } %>
-      <%= form.hidden_field :longitude, data: { 'maps-target': 'longitude' } %>
+      <%= form.hidden_field :latitude, value: @user.latitude, data: { 'maps-target': 'latitude' } %>
+      <%= form.hidden_field :longitude, value: @user.longitude, data: { 'maps-target': 'longitude' } %>
       <%= form.hidden_field :correct, value: false, data: { 'maps-target': 'correctPlace' } %>
 
       <%= content_tag :div, nil, data: { 'maps-target': "map" }, class: 'map mb-4' %>

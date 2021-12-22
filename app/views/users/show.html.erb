@@ -8,8 +8,12 @@
 
 <div class='d-flex'>
   <div class="bg-white rounded p-4 flex-grow-1 shadow">
-    <h6><i class="bi-geo-alt-fill"></i> Poznań, Wilda</h6>
-    <h6> <%= 'Cześć jestem Katty, lubię grać w gry planszowe. :) ' %></h6>
+    <% if @user.place && @user.place != "" %>
+      <h6><i class="bi-geo-alt-fill"></i> <%= @user.place %></h6>
+    <% end %>
+  
+    <h6> <%= @user.bio && @user.bio != "" ? @user.bio : "Ten użytkownik nie podał żadnych informacji o sobie." %></h6>
+
     <% if current_user.username == @user.username %>
       <hr/>
       <h5>Dane osobowe</h5>

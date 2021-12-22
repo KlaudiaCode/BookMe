@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-  
   before_action :require_user, only: [:new, :create, :destroy]
 
   def index
@@ -15,20 +14,14 @@ class ItemsController < ApplicationController
   end
 
   def new
+    @user = current_user
     @item = Item.new
   end
 
   def create
-    if logged_in?
-      user = current_user
-    else
-      flash[:warning] = 'Musisz się zalogować aby dodawać przedmioty '
-      user = User.first
-    end
-
     @item = Item.new(item_params)
     if ActiveModel::Type::Boolean.new.cast(params[:item][:correct])
-      @item.user = user
+      @item.user = current_user
   
       if @item.save
         flash[:success] = 'Przedmiot został dodany'
