@@ -19,10 +19,10 @@
 #  index_trades_on_trader_item_id  (trader_item_id)
 #
 class Trade < ApplicationRecord
-  belongs_to :owner, class_name: 'User'
-  belongs_to :trader, class_name: 'User'
-  belongs_to :owner_item, class_name: 'Item'
-  belongs_to :trader_item, class_name: 'Item'
+  belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
+  belongs_to :trader, class_name: 'User', foreign_key: "trader_id"
+  belongs_to :owner_item, class_name: 'Item', foreign_key: "owner_item_id"
+  belongs_to :trader_item, class_name: 'Item', foreign_key: "trader_item_id"
   enum status: %i[pending seen accepted rejected]
 
   validates :status, presence: true

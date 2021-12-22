@@ -18,9 +18,9 @@
 #  updated_at      :datetime         not null
 #
 class User < ApplicationRecord
-  has_many :items
+  has_many :items, dependent: :destroy
   has_secure_password
-  has_many :trades
+  has_many :trades, dependent: :nullify
 
   validates :name, :surname, :username, :email, presence: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true

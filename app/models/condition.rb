@@ -8,7 +8,7 @@
 #  updated_at :datetime         not null
 #
 class Condition < ApplicationRecord
-  has_many :items
+  has_many :items, dependent: :nullify
 
   validates :name, presence: true
 

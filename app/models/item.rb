@@ -27,10 +27,13 @@
 class Item < ApplicationRecord
   belongs_to :user
   belongs_to :condition
-  has_many :item_genres
-  has_many :genres, through: :item_genres
+  has_many :item_genres, dependent: :destroy
+  has_many :genres, through: :item_genres, dependent: :destroy
   has_many_attached :images
-  has_many :trades, dependent: :destroy
+  has_many :sent_trades, class_name: 'Trade', foreign_key: 'trader_item_id'
+  has_many :received_trades, class_name: 'Trade', foreign_key: 'owner_item_id'
+
+  before_destroy :reject_trades
 
   validates :title, :author, :description, :publisher, presence: true
 
@@ -40,5 +43,16 @@ class Item < ApplicationRecord
     items_of_others = without_logged_user(current_user_id)
     items_in_place = items_of_others.where('place like ?', "%#{place}%")
     items_in_place.where('title like ?', "%#{search}%").or(items_in_place.where('description like ?', "%#{search}%"))
+  end
+
+  private
+
+  def reject_trades
+    sent_trades.each do |trade|
+      trade.rejected!
+    end
+    received_trades.each do |trade|
+      trade.rejected!
+    end
   end
 end
