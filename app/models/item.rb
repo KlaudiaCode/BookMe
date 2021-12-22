@@ -8,6 +8,7 @@
 #  group        :boolean
 #  latitude     :decimal(, )
 #  longitude    :decimal(, )
+#  place        :string
 #  player_max   :integer
 #  player_min   :integer
 #  publisher    :string           not null

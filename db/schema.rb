@@ -40,18 +40,6 @@ ActiveRecord::Schema.define(version: 2021_12_14_103853) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "addresses", force: :cascade do |t|
-    t.string "city", null: false
-    t.string "street", null: false
-    t.string "street_num"
-    t.integer "num", null: false
-    t.string "zip_code", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_addresses_on_user_id"
-  end
-
   create_table "conditions", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false

@@ -5,21 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create(
-  name: 'Jo',
-  surname: 'Jo',
-  username: 'Jo',
-  email: 'Jo',
-  password: 'jo'
-)
-User.create(
-  name: 'Admin',
-  surname: 'Jo Admin',
-  username: 'Jo Admin',
-  email: 'Jo Admin',
-  password: 'admin',
-  is_admin: true
-)
 Condition.create(
   name: 'Nowy'
 )
