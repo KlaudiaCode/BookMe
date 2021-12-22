@@ -42,7 +42,7 @@
 
 </div>
 
-<div class="row gx-3">
+<div class="row gx-3 gy-3 pb-5">
   <% @items.each do |item| %>
     <%= render partial: 'item', locals: { item: item, can_edit: false, in_trade: false } %>
   <% end %>

@@ -16,20 +16,24 @@
         <% end %>
       </div>
       <div class="mt-3">
-        <h5><%= item.title %></h5>
+        <h5 style="height: 2.5rem"><%= item.title.truncate(55) %></h5>
         <% if in_trade %>
           <span><b>Opis:</b> <%= item.description.truncate(50) %></span><br>
           <span><b>Stan:</b> <%= item.condition %></span><br>
           <span><b>Autor:</b> <%= item.author %></span><br>
         <% end %>
 
-        <% if item.group == false %>
-          <i class="bi-book"></i> 
-        <% else %>
-          <i class="bi-dice-3"></i>
-        <% end %>
+        <div class="mb-3" style="height: 2rem">
+          <% if item.group == false %>
+            <i class="bi-book"></i> 
+          <% else %>
+            <i class="bi-dice-3"></i>
+          <% end %>
+          <span>
 
-        <span> <i>Dodano <%= item.created_at.to_date %> przez <%= item.user.username %></i></span>
+            <i>Dodano <%= item.created_at.to_date %> przez <%= item.user.username.truncate(33) %></i>
+          </span>
+        </div>
       </div>
     <% end %>
     <% if !can_edit && !in_trade%>
