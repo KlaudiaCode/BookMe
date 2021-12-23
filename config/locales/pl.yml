@@ -42,6 +42,12 @@ pl:
         description: 'Opis'
         author: 'Autor'
         publisher: 'Wydawnictwo'
+      trade:
+        statuses:
+          pending: 'Oczekujące'
+          seen: 'Wyświetlono'
+          accepted: 'Zaakceptowano'
+          rejected: 'Odrzucono'
     errors:
       models:
         item:

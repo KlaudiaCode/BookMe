@@ -1,18 +1,14 @@
 <h1 class="text-center mt-4">OGŁOSZENIA</h1>
 
-<%= form_tag(items_path, method: :get, class: 'row g-0') do %>
-  <div class="col-9">
-    <%= text_field_tag :search, params[:search], placeholder: 'Szukaj...', class: 'col form-control' %>
-  </div>
-  <div class="col-2" data-controller="search">
+<%= form_tag(items_path, method: :get, class: 'd-flex') do %>
+  <%= text_field_tag :search, params[:search], placeholder: 'Szukaj...', class: 'col form-control' %>
+  <div data-controller="search">
     <%= search_field_tag :place, params[:place], data: { 'search-target': "location", action: "keydown->search#preventSubmit" }, class: 'form-control' %>
   </div>
-  <div class="col-1">
-    <%= button_tag(type: 'submit', class: "btn btn-outline-primary") do %>
-      Szukaj
-      <i class="bi-search"></i>
-    <% end %>
-  </div>
+  <%= button_tag(type: 'submit', class: "btn btn-outline-primary") do %>
+    Szukaj
+    <i class="bi-search"></i>
+  <% end %>
 <% end %>
 
 <div class="d-flex justify-content-end gap-1 align-items-center py-3">

@@ -7,12 +7,12 @@
     <div class="col-3">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title"><%= trade.status.capitalize%></h5>
+          <h5 class="card-title <%= trade.status %>"><%= Trade.human_enum_name(:status, trade.status)%></h5>
           <p class="card-text">
             Wymienię: <%= trade.trader_item ? trade.trader_item.title : "(Przedmiot usunięty)" %> <br>
             Za: <%= trade.owner_item ? trade.owner_item.title : "(Przedmiot usunięty)" %> <br>
             Od: <%= trade.owner.username %> <br>
-            <%= button_to 'REZYGNUJ', trade, method: :delete, class:"btn btn-outline-warning"%>
+            <%= button_to 'REZYGNUJ', trade, method: :delete, class:"btn btn-outline-danger"%>
             <% if trade.status == "accepted"%>
               <hr/>
               <h5> Dane kontaktowe </h5>
@@ -31,14 +31,18 @@
     <div class="col-3">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title"><%= trade.status.capitalize%></h5>
+          <h5 class="card-title <%= trade.status %>"><%= Trade.human_enum_name(:status, trade.status) %></h5>
           <p class="card-text">
             Wymienię: <%= trade.owner_item ? trade.owner_item.title : "(Przedmiot usunięty)" %> <br>
             Za: <%= trade.trader_item ? trade.trader_item.title : "(Przedmiot usunięty)" %> <br>
             Od: <%= trade.trader.username %> <br>
             <div class="d-flex">
-              <%= button_to 'AKCEPTUJ', trade_path(trade.id, status:2), method: :patch, class:"btn btn-outline-primary me-3"%>
-              <%= button_to 'ODRZUĆ', trade_path(trade.id, status:3), method: :patch, class:"btn btn-outline-danger"%>
+              <% if !trade.accepted? %>
+                <%= button_to 'AKCEPTUJ', trade_path(trade.id, status:2), method: :patch, class:"btn btn-outline-primary me-3"%>
+              <% end %>
+              <% if !trade.rejected? %>
+                <%= button_to 'ODRZUĆ', trade_path(trade.id, status:3), method: :patch, class:"btn btn-outline-danger"%>  
+              <% end %>
             </div>
             <% if trade.status == "accepted"%>
               <hr/>
