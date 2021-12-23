@@ -12,23 +12,37 @@
 <% end %>
 
 <div class="d-flex justify-content-end gap-1 align-items-center py-3">
-  SORTOWANIE
-  <%= link_to items_path(sort_type: 'LOWER(title)'), class:"btn btn-primary" do %>
-    <i class="bi-arrow-up"></i>
-    Nazwa
-  <% end %>
-  <%= link_to items_path(sort_type: 'LOWER(title) DESC'), class:"btn btn-primary" do %>
-    <i class="bi-arrow-down"></i>
-    Nazwa
-  <% end %>
-  <%= link_to items_path(sort_type: 'created_at'), class:"btn btn-primary" do %>
-    <i class="bi-arrow-up"></i>
-    Data
-  <% end %>
-  <%= link_to items_path(sort_type: 'created_at DESC'), class:"btn btn-primary" do %>
-    <i class="bi-arrow-down"></i>
-    Data
-  <% end %>
+  <div class="dropdown">
+    <button style="min-width: 10rem;" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      Sortowanie
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+      <li>
+        <%= link_to items_path(sort_type: 'LOWER(title)'), class:"dropdown-item" do %>
+          <i class="bi-arrow-up"></i>
+          Nazwa
+        <% end %>
+      </li>
+      <li>
+        <%= link_to items_path(sort_type: 'LOWER(title) DESC'), class:"dropdown-item" do %>
+          <i class="bi-arrow-down"></i>
+          Nazwa
+        <% end %>
+      </li>
+      <li>
+        <%= link_to items_path(sort_type: 'created_at'), class:"dropdown-item" do %>
+          <i class="bi-arrow-up"></i>
+          Data
+        <% end %>
+      </li>
+      <li>
+        <%= link_to items_path(sort_type: 'created_at DESC'), class:"dropdown-item" do %>
+          <i class="bi-arrow-down"></i>
+          Data
+        <% end %>
+      </li>
+    </ul>
+  </div>
   <%= link_to items_path(sort_type: ''), class:"btn btn-outline-primary" do %>
     <i class="bi-book"></i> 
   <% end %>
