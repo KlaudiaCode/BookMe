@@ -1,47 +1,54 @@
 <h1 class="text-center mt-4">MOJE OFERTY</h1>
 
 <h5 class="text-center">WYSŁANE</h5>
-<div class="d-flex p-12 bd-highlight">
+<div class="row gx-0 gy-0">
   <% @my_trades.each do |trade| %>
-      <div class="card" style="width: 18rem;">
+
+    <div class="col-3">
+      <div class="card">
         <div class="card-body">
           <h5 class="card-title"><%= trade.status.capitalize%></h5>
-            <p class="card-text">
-              Wymienię: <%= trade.trader_item ? trade.trader_item.title : "(Przedmiot usunięty)" %> <br>
-              Za: <%= trade.owner_item ? trade.owner_item.title : "(Przedmiot usunięty)" %> <br>
-              Od: <%= trade.owner.username %> <br>
-              <%= button_to 'REZYGNUJ', trade, method: :delete, class:"btn btn-outline-warning"%>
-              <% if trade.status == "accepted"%>
-                <hr/>
-                <h5> Dane kontaktowe </h5>
-                Email: <%= trade.owner.email %> <br>
-                Numer telefonu: <%= trade.owner.phone %>
-              <% end %>
-            </p>
+          <p class="card-text">
+            Wymienię: <%= trade.trader_item ? trade.trader_item.title : "(Przedmiot usunięty)" %> <br>
+            Za: <%= trade.owner_item ? trade.owner_item.title : "(Przedmiot usunięty)" %> <br>
+            Od: <%= trade.owner.username %> <br>
+            <%= button_to 'REZYGNUJ', trade, method: :delete, class:"btn btn-outline-warning"%>
+            <% if trade.status == "accepted"%>
+              <hr/>
+              <h5> Dane kontaktowe </h5>
+              Email: <%= trade.owner.email %> <br>
+              Numer telefonu: <%= trade.owner.phone %>
+            <% end %>
+          </p>
         </div>
       </div>
+    </div>
   <% end %>
 </div>
 <h5 class="text-center">OTRZYMANE</h5>
-<div class="d-flex p-12 bd-highlight">
+<div class="row gx-0 gy-0">
   <% @received_trades.each do |trade| %>
-      <div class="card" style="width: 18rem;">
+    <div class="col-3">
+      <div class="card">
         <div class="card-body">
           <h5 class="card-title"><%= trade.status.capitalize%></h5>
-            <p class="card-text">
-              Wymienię: <%= trade.owner_item ? trade.owner_item.title : "(Przedmiot usunięty)" %> <br>
-              Za: <%= trade.trader_item ? trade.trader_item.title : "(Przedmiot usunięty)" %> <br>
-              Od: <%= trade.trader.username %> <br>
-              <%= button_to 'AKCEPTUJ', trade_path(trade.id, status:2), method: :patch, class:"btn btn-outline-primary"%>
+          <p class="card-text">
+            Wymienię: <%= trade.owner_item ? trade.owner_item.title : "(Przedmiot usunięty)" %> <br>
+            Za: <%= trade.trader_item ? trade.trader_item.title : "(Przedmiot usunięty)" %> <br>
+            Od: <%= trade.trader.username %> <br>
+            <div class="d-flex">
+              <%= button_to 'AKCEPTUJ', trade_path(trade.id, status:2), method: :patch, class:"btn btn-outline-primary me-3"%>
               <%= button_to 'ODRZUĆ', trade_path(trade.id, status:3), method: :patch, class:"btn btn-outline-danger"%>
-              <% if trade.status == "accepted"%>
-                <hr/>
-                <h5> Dane kontaktowe </h5>
-                Email: <%= trade.trader.email %> <br>
-                Numer telefonu: <%= trade.trader.phone %>
-              <% end %>
-            </p>
+            </div>
+            <% if trade.status == "accepted"%>
+              <hr/>
+              <h5> Dane kontaktowe </h5>
+              Email: <%= trade.trader.email %> <br>
+              Numer telefonu: <%= trade.trader.phone %>
+            <% end %>
+          </p>
         </div>
       </div>
+    </div>
   <% end %>
 </div>
