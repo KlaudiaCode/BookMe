@@ -1,5 +1,5 @@
 <h1 class="text-center mt-4">DODAWANIE NOWEGO PRZEDMIOTU</h1>
-<div data-controller="maps" class="row justify-content-center mb-5">
+<div data-controller="maps itemType" class="row justify-content-center mb-5">
   <div class="col-8 bg-white p-4 rounded">
     <%= form_with model: @item do |form| %>
       <div class="mb-4">
@@ -32,16 +32,30 @@
         <%= form.collection_select :condition_id, Condition.order(:name), :id, :name, {}, { class: 'form-select bg-light' }  %>
       </div>
 
+      <%= form.hidden_field :switch, value: false, data: { 'itemType-target': 'switch' } %>
+
       <div class="mb-4">
-        <%= form.radio_button :group, false, class: 'btn-check', id: 'book_radio' %>
+        <%= form.radio_button :group, false, class: 'btn-check', id: 'book_radio', data: { action: "click->itemType#hide" } %>
         <label class="btn btn-outline-primary" for="book_radio">Książka</label>
-        <%= form.radio_button :group, true, class: 'btn-check', id: 'game_radio' %>
+        <%= form.radio_button :group, true, class: 'btn-check', id: 'game_radio', data: { action: "click->itemType#show" } %>
         <label class="btn btn-outline-primary" for="game_radio">Gra</label>
+      </div>
+
+      <div data-itemType-target="container">
+        <div class="mb-4">
+          <%= form.label :player_min, 'Minimalna liczba graczy', class: 'form-label' %>
+          <%= form.text_field :player_min, class: 'form-control bg-light' %>
+        </div>
+
+        <div class="mb-4">
+          <%= form.label :player_max, 'Maksymalna liczba graczy', class: 'form-label' %>
+          <%= form.text_field :player_max, class: 'form-control bg-light' %>
+        </div>
       </div>
 
       <div class="mb-4">
         <%= form.label :place, 'Lokalizacja', class: 'form-label' %>
-        <%= form.search_field :place, value: @user.place, data: { 'maps-target': "location", action: "keydown->maps#preventSubmit" }, class: 'form-control' %>
+        <%= form.search_field :place, value: @user.place, data: { 'maps-target': "location", action: "keydown->maps#preventSubmit" }, class: 'form-control bg-light' %>
       </div>
 
       <%= form.hidden_field :latitude, value: @user.latitude, data: { 'maps-target': 'latitude' } %>

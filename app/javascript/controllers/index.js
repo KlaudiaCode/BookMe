@@ -6,6 +6,9 @@ import { application } from "./application"
 import ItemShowController from "./itemShow_controller.js"
 application.register("itemShow", ItemShowController)
 
+import ItemTypeController from "./itemType_controller.js"
+application.register("itemType", ItemTypeController)
+
 import MapsController from "./maps_controller.js"
 application.register("maps", MapsController)
 
