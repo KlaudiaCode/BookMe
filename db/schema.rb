@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_22_170842) do
+ActiveRecord::Schema.define(version: 2021_12_30_191405) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_170842) do
     t.integer "owner_item_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "archived", default: false
     t.index ["owner_id"], name: "index_trades_on_owner_id"
     t.index ["owner_item_id"], name: "index_trades_on_owner_item_id"
     t.index ["trader_id"], name: "index_trades_on_trader_id"
