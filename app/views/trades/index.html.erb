@@ -2,18 +2,22 @@
 <h5 class="text-center mt-1">WYSŁANE</h5>
 <div class="row gx-3 gy-3 mb-4">
   <% @my_trades.each do |trade| %>
-    <%= render partial: 'trade', locals: { trade: trade,
-                                           my_item: trade.trader_item,
-                                           other_item: trade.owner_item,
-                                           owned: true } %>
+    <% if !trade.archived %>
+      <%= render partial: 'trade', locals: { trade: trade,
+                                             my_item: trade.trader_item,
+                                             other_item: trade.owner_item,
+                                             owned: true } %>
+    <% end %>
   <% end %>
 </div>
 <h5 class="text-center">OTRZYMANE</h5>
 <div class="row gx-3 gy-3 mb-5">
   <% @received_trades.each do |trade| %>
-    <%= render partial: 'trade', locals: { trade: trade,
-                                           my_item: trade.owner_item,
-                                           other_item: trade.trader_item,
-                                           owned: false } %>
+    <% if !trade.archived %>
+      <%= render partial: 'trade', locals: { trade: trade,
+                                             my_item: trade.owner_item,
+                                             other_item: trade.trader_item,
+                                             owned: false } %>
+    <% end %>
   <% end %>
 </div>

@@ -43,6 +43,12 @@ class TradesController < ApplicationController
     redirect_to trades_path
   end
 
+  def archive
+    trade = Trade.find(params[:trade_id])
+    trade.update(archived: true)
+    redirect_to trades_path
+  end
+
   private
 
   def trade_params

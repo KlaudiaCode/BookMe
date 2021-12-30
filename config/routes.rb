@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :users, except: :index
   get 'users/:id/shelf', to: 'users#shelf'
   post 'users/change_password', to: 'users#change_password'
+  post 'trades/archive', to: 'trades#archive'
 
   resources :trades, only: [:new, :create, :index, :update, :destroy]
   
