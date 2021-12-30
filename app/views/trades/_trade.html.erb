@@ -1,0 +1,50 @@
+<div class="col-3">
+  <div class="bg-white p-3 rounded shadow">
+    <div class="d-flex flex-row align-items-center">
+      <h5 class="<%= trade.status %> flex-grow-1"><%= Trade.human_enum_name(:status, trade.status) %></h5>
+      <%= button_to trade, class: 'btn p-0', method: :post do %>
+        <i class="bi-archive-fill"></i>
+      <% end %>
+    </div>
+    <%= owned ? "Oferuję:" : "Oddam:" %>
+    <% if my_item %>
+      <%= link_to my_item.title, my_item, class: 'link link-col' %>
+    <% else %>
+      (Przedmiot usunięty)
+    <% end %>
+
+    <br>Za:
+    <% if other_item %>
+      <%= link_to other_item.title, other_item, class: 'link link-col' %>
+    <% else %>
+      (Przedmiot usunięty)
+    <% end %>
+
+    <br>Od: 
+    <% if owned %>
+      <%= link_to trade.owner.username, trade.owner, class: 'link link-col' %>
+    <% else %>
+      <%= link_to trade.trader.username, trade.trader, class: 'link link-col' %>
+    <% end %>
+
+    <div class="d-flex mt-3">
+      <% if owned %>
+        <%= button_to 'REZYGNUJ', trade, method: :delete, class:"btn btn-outline-danger"%>
+      <% else %>
+        <% if !trade.accepted? %>
+          <%= button_to 'AKCEPTUJ', trade_path(trade.id, status:2), method: :patch, class:"btn btn-outline-primary me-3"%>
+        <% end %>
+        <% if !trade.rejected? %>
+          <%= button_to 'ODRZUĆ', trade_path(trade.id, status:3), method: :patch, class:"btn btn-outline-danger"%>  
+        <% end %>
+      <% end %>
+    </div>
+
+    <% if trade.status == "accepted" %>
+      <hr/>
+      <h5> Dane kontaktowe </h5>
+      Email: <%= other_item.user.email %> <br>
+      Numer telefonu: <%= other_item.user.phone %>
+    <% end %>
+  </div>
+</div>

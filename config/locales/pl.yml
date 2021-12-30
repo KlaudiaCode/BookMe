@@ -44,8 +44,8 @@ pl:
         publisher: 'Wydawnictwo'
       trade:
         statuses:
-          pending: 'Oczekujące'
-          seen: 'Wyświetlono'
+          pending: 'Oczekująca'
+          seen: 'Wyświetlona'
           accepted: 'Zaakceptowano'
           rejected: 'Odrzucono'
     errors:
