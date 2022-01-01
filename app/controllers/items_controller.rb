@@ -19,11 +19,13 @@ class ItemsController < ApplicationController
   end
 
   def create
+    @user = current_user
     @item = Item.new(item_params)
     if ActiveModel::Type::Boolean.new.cast(params[:item][:correct])
       @item.user = current_user
   
       if @item.save
+        create_item_genres params[:item][:genres], @item.id
         flash[:success] = 'Przedmiot został dodany'
         redirect_to @item
       else
@@ -48,6 +50,12 @@ class ItemsController < ApplicationController
   end
 
   private
+
+  def create_item_genres(genres, item_id)
+    genres.each do |genre|
+      ItemGenre.create(item_id: item_id, genre_id: genre.to_i)
+    end
+  end
 
   def item_params
     params.require(:item).permit(:title, :author, :description, :group, :publisher, :condition_id, :genre_id, :place, :latitude, :longitude, :player_max, :player_min, images: [])

@@ -27,6 +27,7 @@ export default class extends Controller {
     const newBadge = document.createElement("span")
     newBadge.classList.add("badge","bg-primary","me-1")
     newBadge.innerHTML = name
+
     const closeButton = document.createElement("button")
     closeButton.type = "button"
     closeButton.ariaLabel = "Close"
@@ -34,7 +35,14 @@ export default class extends Controller {
     closeButton.dataset.id = id
     closeButton.dataset.action = "genres#removeGenre"
     newBadge.appendChild(closeButton)
+
+    const hiddenField = document.createElement("input")
+    hiddenField.value = id
+    hiddenField.type = "hidden"
+    hiddenField.name = `item[genres][]`
+
     this.containerTarget.appendChild(newBadge)
+    this.containerTarget.appendChild(hiddenField)
   }
 
   removeGenre(event) {

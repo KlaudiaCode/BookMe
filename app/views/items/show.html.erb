@@ -55,9 +55,10 @@
           <i class="bi-dice-3"></i>
         <% end %>
       </h5> 
-
-
       <p><%= @item.description %></p>
+      <% @item.item_genres.each do |item_genre| %>
+        <span class="badge bg-primary"><%= item_genre.genre.name %></span>
+      <% end %>
       <hr/>
       <h5>Właściciel</h5>
       <div>
