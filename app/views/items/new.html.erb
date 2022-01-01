@@ -77,7 +77,7 @@
 
       <%= form.hidden_field :latitude, value: @user.latitude, data: { 'maps-target': 'latitude' } %>
       <%= form.hidden_field :longitude, value: @user.longitude, data: { 'maps-target': 'longitude' } %>
-      <%= form.hidden_field :correct, value: false, data: { 'maps-target': 'correctPlace' } %>
+      <%= form.hidden_field :correct, value: !!@user.place, data: { 'maps-target': 'correctPlace' } %>
 
       <%= content_tag :div, nil, data: { 'maps-target': "map" }, class: 'map mb-4' %>
 
