@@ -52,8 +52,10 @@ class ItemsController < ApplicationController
   private
 
   def create_item_genres(genres, item_id)
-    genres.each do |genre|
-      ItemGenre.create(item_id: item_id, genre_id: genre.to_i)
+    if genres
+      genres.each do |genre|
+        ItemGenre.create(item_id: item_id, genre_id: genre.to_i)
+      end
     end
   end
 

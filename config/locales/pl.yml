@@ -42,6 +42,7 @@ pl:
         description: 'Opis'
         author: 'Autor'
         publisher: 'Wydawnictwo'
+        group: 'Kategoria'
       trade:
         statuses:
           pending: 'Oczekująca'
@@ -60,7 +61,10 @@ pl:
               blank: 'musi zostać podany'
             publisher:
               blank: 'musi zostać podane'
-
+            condition:
+              blank: 'musi zostać podany'
+            group:
+              blank: 'musi zostać podana'
         user:
           attributes:
             name:

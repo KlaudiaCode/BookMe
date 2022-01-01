@@ -35,7 +35,7 @@ class Item < ApplicationRecord
 
   before_destroy :reject_trades
 
-  validates :title, :author, :description, :publisher, presence: true
+  validates :title, :author, :description, :publisher, :group, presence: true
 
   scope :without_logged_user, ->(user_id) { where.not('user_id = ?', user_id) }
 
