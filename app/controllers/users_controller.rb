@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @can_edit = logged_in? && current_user.username == @user.username
   end
 
   def new
