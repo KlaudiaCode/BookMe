@@ -41,6 +41,23 @@
         <label class="btn btn-outline-primary" for="game_radio">Gra</label>
       </div>
 
+      <div class="mb-4" data-controller="genres">
+        <div class="dropdown dropend">
+          <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+            Kategorie
+          </button>
+          <div class="dropdown-menu">
+            <input type="text" class="form-control bg-light" placeholder="Zacznij wpisywać..." data-action="genres#search">
+            <div class="dropdown-divider"></div>
+            <% Genre.all.each do |genre| %>
+              <a class="dropdown-item" href="#" id="<%= genre.id %>" data-genres-target="item" data-genres-name-param="<%= genre.name %>" data-action="click->genres#chosen"><%= genre.name %></a>
+            <% end %>
+          </div>
+        </div>
+        <div class="mt-2" data-genres-target="container">
+        </div>
+      </div>
+
       <div data-itemType-target="container">
         <div class="mb-4">
           <%= form.label :player_min, 'Minimalna liczba graczy', class: 'form-label' %>

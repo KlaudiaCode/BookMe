@@ -3,6 +3,9 @@
 
 import { application } from "./application"
 
+import GenresController from "./genres_controller.js"
+application.register("genres", GenresController)
+
 import ItemShowController from "./itemShow_controller.js"
 application.register("itemShow", ItemShowController)
 

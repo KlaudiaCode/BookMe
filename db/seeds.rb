@@ -17,3 +17,11 @@ Condition.create(
 Condition.create(
   name: 'Zły'
 )
+Genre.create(
+  name: 'funny',
+  group: 'game'
+)
+Genre.create(
+  name: 'criminal',
+  group: 'book'
+)
