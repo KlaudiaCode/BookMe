@@ -3,13 +3,23 @@ import { Controller} from "stimulus"
 export default class extends Controller {
   static targets = ["container", "item"]
 
-  search() {
-    console.log("Search")
+  search(event) {
+    const value = event.target.value
+    this.itemTargets.forEach(element => {
+      if (element.innerHTML.indexOf(value) !== -1) {
+        if (!element.hasAttribute("data-chosen")) {
+          element.classList.remove('d-none')
+        }
+      } else {
+        element.classList.add('d-none')
+      }
+    });
   }
 
   chosen(event) {
     event.preventDefault()
     event.target.classList.add('d-none')
+    event.target.dataset.chosen = true
     this.createBadge(event.params.name, event.target.id)
   }
 
@@ -30,6 +40,7 @@ export default class extends Controller {
   removeGenre(event) {
     const item = this.itemTargets.find(({id}) => id === event.target.dataset.id)
     item.classList.remove('d-none')
+    item.removeAttribute('data-chosen')
     event.target.parentElement.remove()
   }
 }
