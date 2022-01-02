@@ -39,8 +39,9 @@ class Item < ApplicationRecord
 
   scope :without_logged_user, ->(user_id) { where.not('user_id = ?', user_id) }
 
-  def self.search(search = "", place = "", current_user_id = 0)
-    items_of_others = without_logged_user(current_user_id)
+  def self.search(search = '', place = '', current_user)
+    id = current_user ? current_user.id : 0
+    items_of_others = without_logged_user(id)
     items_in_place = items_of_others.where('place like ?', "%#{place}%")
     items_in_place.where('title like ?', "%#{search}%").or(items_in_place.where('description like ?', "%#{search}%"))
   end

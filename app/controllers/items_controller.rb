@@ -2,11 +2,7 @@ class ItemsController < ApplicationController
   before_action :require_user, only: [:new, :create, :destroy]
 
   def index
-    if logged_in?
-      @items = Item.search(params[:search], params[:place], current_user.id).order(params[:sort_type])
-    else
-      @items = Item.search(params[:search], params[:place]).order(params[:sort_type])
-    end
+    @items = Item.search(params[:search], params[:place], current_user).order(params[:sort_type])
   end
 
   def show
