@@ -48,13 +48,20 @@
   
   <div class="col-5">
     <div class="p-3 bg-white rounded">
-      <h5>Opis
-        <% if @item.group == false %>
-          <i class="bi-book"></i> 
-        <% else %>
-          <i class="bi-dice-3"></i>
+      <div class="d-flex flex-row">
+        <h5 class="flex-grow-1">Opis
+          <% if @item.group == false %>
+            <i class="bi-book"></i> 
+          <% else %>
+            <i class="bi-dice-3"></i>
+          <% end %>
+        </h5>
+        <% if logged_in? && @item.user == current_user %>
+          <%= link_to edit_item_path(@item), class:"btn btn-outline-primary" do %>
+            <i class="bi-pencil-fill"></i> 
+          <% end %>
         <% end %>
-      </h5> 
+      </div>
       <p><%= @item.description %></p>
       <% @item.item_genres.each do |item_genre| %>
         <span class="badge bg-primary"><%= item_genre.genre.name %></span>
