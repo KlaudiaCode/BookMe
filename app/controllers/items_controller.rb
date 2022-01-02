@@ -17,6 +17,21 @@ class ItemsController < ApplicationController
     @user = current_user
     @item = Item.new
   end
+  
+  def edit
+    @user = current_user
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      flash[:success] = 'Dane przedmiotu zostały zaktualizowane.'
+      redirect_to @item
+    else
+      render 'edit'
+    end
+  end
 
   def create
     @user = current_user
