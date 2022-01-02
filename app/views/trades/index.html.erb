@@ -1,16 +1,14 @@
-<h1 class="text-center mt-4">MOJE OFERTY</h1>
+<h1 class="text-center mt-4"><%= @is_archive ? "ARCHIWUM OFERT" : "MOJE OFERTY" %></h1>
 <h5 class="text-center mt-1">WYSŁANE</h5>
 <div class="row gx-3 gy-3 mb-4">
   <% if @my_trades.size == 0 %>
     <h5 class="text-center mt-3 text-black-50">Nie masz żadnych wysłanych ofert.</h5>
   <% else %>
     <% @my_trades.each do |trade| %>
-      <% if !trade.archived %>
-        <%= render partial: 'trade', locals: { trade: trade,
-                                              my_item: trade.trader_item,
-                                              other_item: trade.owner_item,
-                                              owned: true } %>
-      <% end %>
+      <%= render partial: 'trade', locals: { trade: trade,
+                                            my_item: trade.trader_item,
+                                            other_item: trade.owner_item,
+                                            owned: true } %>
     <% end %>
   <% end %>
 </div>
@@ -20,12 +18,10 @@
     <h5 class="text-center mt-3 text-black-50">Nie masz żadnych otrzymanych ofert.</h5>
   <% else %>
     <% @received_trades.each do |trade| %>
-      <% if !trade.archived %>
-        <%= render partial: 'trade', locals: { trade: trade,
-                                              my_item: trade.owner_item,
-                                              other_item: trade.trader_item,
-                                              owned: false } %>
-      <% end %>
+      <%= render partial: 'trade', locals: { trade: trade,
+                                            my_item: trade.owner_item,
+                                            other_item: trade.trader_item,
+                                            owned: false } %>
     <% end %>
   <% end %>
 </div>

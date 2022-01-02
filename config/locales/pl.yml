@@ -49,6 +49,7 @@ pl:
           seen: 'Wyświetlona'
           accepted: 'Zaakceptowano'
           rejected: 'Odrzucono'
+        trader_item: 'Przedmiot na wymianę'
     errors:
       models:
         item:
@@ -81,3 +82,7 @@ pl:
               blank: 'musi zostać podany'
               invalid: 'niepoprawny'
               taken: 'już istnieje'
+        trade:
+          attributes:
+            trader_item:
+              required: 'musi zostać wybrany'

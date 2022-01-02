@@ -2,8 +2,9 @@ class TradesController < ApplicationController
   before_action :require_user
 
   def index
-    @my_trades = Trade.where(trader_id: current_user.id)
-    @received_trades = Trade.where(owner_id: current_user.id)
+    @is_archive = params[:archived].nil? ? false : true
+    @my_trades = Trade.where(trader_id: current_user.id).where(archived: @is_archive)
+    @received_trades = Trade.where(owner_id: current_user.id).where(archived: @is_archive)
   end
 
   def new
@@ -45,7 +46,7 @@ class TradesController < ApplicationController
 
   def archive
     trade = Trade.find(params[:trade_id])
-    trade.update(archived: true)
+    trade.update(archived: !trade.archived)
     redirect_to trades_path
   end
 

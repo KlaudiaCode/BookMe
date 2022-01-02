@@ -27,24 +27,26 @@
       <%= link_to trade.trader.username, trade.trader, class: 'link link-col' %>
     <% end %>
 
-    <div class="d-flex mt-3">
-      <% if owned %>
-        <%= button_to 'REZYGNUJ', trade, method: :delete, class:"btn btn-outline-danger"%>
-      <% else %>
-        <% if !trade.accepted? %>
-          <%= button_to 'AKCEPTUJ', trade_path(trade.id, status:2), method: :patch, class:"btn btn-outline-primary me-3"%>
+    <% if !trade.archived %>
+      <div class="d-flex mt-3">
+        <% if owned %>
+          <%= button_to 'REZYGNUJ', trade, method: :delete, class:"btn btn-outline-danger"%>
+        <% else %>
+          <% if !trade.accepted? %>
+            <%= button_to 'AKCEPTUJ', trade_path(trade.id, status:2), method: :patch, class:"btn btn-outline-primary me-3"%>
+          <% end %>
+          <% if !trade.rejected? %>
+            <%= button_to 'ODRZUĆ', trade_path(trade.id, status:3), method: :patch, class:"btn btn-outline-danger"%>  
+          <% end %>
         <% end %>
-        <% if !trade.rejected? %>
-          <%= button_to 'ODRZUĆ', trade_path(trade.id, status:3), method: :patch, class:"btn btn-outline-danger"%>  
-        <% end %>
-      <% end %>
-    </div>
+      </div>
 
-    <% if trade.status == "accepted" %>
-      <hr/>
-      <h5> Dane kontaktowe </h5>
-      Email: <%= other_item.user.email %> <br>
-      Numer telefonu: <%= other_item.user.phone %>
+      <% if trade.status == "accepted" %>
+        <hr/>
+        <h5> Dane kontaktowe </h5>
+        Email: <%= other_item.user.email %> <br>
+        Numer telefonu: <%= other_item.user.phone %>
+      <% end %>
     <% end %>
   </div>
 </div>
