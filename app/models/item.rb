@@ -35,13 +35,17 @@ class Item < ApplicationRecord
 
   before_destroy :reject_trades
 
-  validates :title, :author, :description, :publisher, :group, presence: true
+  validates :title, :author, :description, :publisher, presence: true
+  validates :group, inclusion: { in: [true, false] }
 
   scope :without_logged_user, ->(user_id) { where.not('user_id = ?', user_id) }
 
-  def self.search(search = '', place = '', current_user)
+  def self.search(search = '', place = '', filter = nil, current_user)
     id = current_user ? current_user.id : 0
     items_of_others = without_logged_user(id)
+    if filter != nil
+      items_of_others = items_of_others.where(group: filter)
+    end
     items_in_place = items_of_others.where('place like ?', "%#{place}%")
     items_in_place.where('title like ?', "%#{search}%").or(items_in_place.where('description like ?', "%#{search}%"))
   end

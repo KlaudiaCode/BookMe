@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'users/:id/shelf', to: 'users#shelf'
   post 'users/change_password', to: 'users#change_password'
   post 'trades/archive', to: 'trades#archive'
+  post 'item/filter', to: 'items#change_filter'
 
   resources :trades, only: [:new, :create, :index, :update, :destroy]
   

@@ -2,7 +2,11 @@ class ItemsController < ApplicationController
   before_action :require_user, only: [:new, :create, :destroy]
 
   def index
-    @items = Item.search(params[:search], params[:place], current_user).order(params[:sort_type])
+    if session[:filter] != nil
+      @items = Item.search(params[:search], params[:place], session[:filter], current_user).order(params[:sort_type])
+    else
+      @items = Item.search(params[:search], params[:place], current_user).order(params[:sort_type])
+    end
   end
 
   def show
@@ -19,7 +23,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     if ActiveModel::Type::Boolean.new.cast(params[:item][:correct])
       @item.user = current_user
-  
+
       if @item.save
         create_item_genres params[:item][:genres], @item.id
         flash[:success] = 'Przedmiot został dodany'
@@ -43,6 +47,15 @@ class ItemsController < ApplicationController
       redirect_to @item
       flash[:warning] = 'Nie udało się usunąć oj'
     end
+  end
+
+  def change_filter
+    if params[:filter] == "false"
+      session[:filter] = session[:filter] == false ? session[:filter] = nil : session[:filter] = false
+    else
+      session[:filter] = session[:filter] == true ? session[:filter] = nil : session[:filter] = true
+    end
+    redirect_to root_path
   end
 
   private
