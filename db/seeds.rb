@@ -9,6 +9,9 @@ Condition.create(
   name: 'Nowy'
 )
 Condition.create(
+  name: 'Bardzo dobry'
+)
+Condition.create(
   name: 'Dobry'
 )
 Condition.create(
@@ -18,10 +21,58 @@ Condition.create(
   name: 'Zły'
 )
 Genre.create(
-  name: 'funny',
+  name: 'planszowa',
   group: 'game'
 )
 Genre.create(
-  name: 'criminal',
+  name: 'karciana',
+  group: 'game'
+)
+Genre.create(
+  name: 'kooperacyjna',
+  group: 'game'
+)
+Genre.create(
+  name: 'euro',
+  group: 'game'
+)
+Genre.create(
+  name: 'strategiczna',
+  group: 'game'
+)
+Genre.create(
+  name: 'familijna',
+  group: 'game'
+)
+Genre.create(
+  name: 'przygodowa',
+  group: 'book'
+)
+Genre.create(
+  name: 'kryminalna',
+  group: 'book'
+)
+Genre.create(
+  name: 'fantasy',
+  group: 'book'
+)
+Genre.create(
+  name: 'biografia',
+  group: 'book'
+)
+Genre.create(
+  name: 'historyczna',
+  group: 'book'
+)
+Genre.create(
+  name: 'dla dzieci',
+  group: 'book'
+)
+Genre.create(
+  name: 'młodzieżowa',
+  group: 'book'
+)
+Genre.create(
+  name: 'komedia',
   group: 'book'
 )
