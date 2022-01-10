@@ -1,9 +1,0 @@
-<div class="d-flex flex-column">
-  <h1 class="text-center mt-4">TWOJA PÓŁKA</h1>
-
-  <div class="row g-3 mb-5">
-    <% @user.items.each do |item| %>
-      <%= render partial: 'items/item', locals: { item: item, can_edit: true, in_trade: false } %>
-    <% end %>
-  </div>
-</div>

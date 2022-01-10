@@ -2,7 +2,7 @@
   <div class="bg-white p-3 rounded shadow">
     <div class="d-flex flex-row align-items-center">
       <h5 class="<%= trade.status %> flex-grow-1"><%= Trade.human_enum_name(:status, trade.status) %></h5>
-      <%= button_to trades_archive_path(trade_id: trade.id), class: 'btn p-0', method: :post, data: { confirm: 'Czy na pewno chcesz zarchiwizować ofertę?' } do %>
+      <%= button_to trades_archive_path(id: trade.id), class: 'btn p-0', method: :post, data: { confirm: 'Czy na pewno chcesz zarchiwizować ofertę?' } do %>
         <i class="bi-archive-fill"></i>
       <% end %>
     </div>

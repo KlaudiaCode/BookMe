@@ -72,12 +72,12 @@
 
       <div class="mb-4">
         <%= form.label :place, 'Lokalizacja', class: 'form-label' %>
-        <%= form.search_field :place, value: @user.place, data: { 'maps-target': "location", action: "keydown->maps#preventSubmit" }, class: 'form-control bg-light' %>
+        <%= form.search_field :place, value: current_user.place, data: { 'maps-target': "location", action: "keydown->maps#preventSubmit" }, class: 'form-control bg-light' %>
       </div>
 
-      <%= form.hidden_field :latitude, value: @user.latitude, data: { 'maps-target': 'latitude' } %>
-      <%= form.hidden_field :longitude, value: @user.longitude, data: { 'maps-target': 'longitude' } %>
-      <%= form.hidden_field :correct, value: !!@user.place, data: { 'maps-target': 'correctPlace' } %>
+      <%= form.hidden_field :latitude, value: current_user.latitude, data: { 'maps-target': 'latitude' } %>
+      <%= form.hidden_field :longitude, value: current_user.longitude, data: { 'maps-target': 'longitude' } %>
+      <%= form.hidden_field :correct, value: !!current_user.place, data: { 'maps-target': 'correctPlace' } %>
 
       <%= content_tag :div, nil, data: { 'maps-target': "map" }, class: 'map mb-4' %>
 

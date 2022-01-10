@@ -1,5 +1,6 @@
 class TradesController < ApplicationController
   before_action :require_user
+  before_action :find_trade, only: [:update, :destroy, :archive]
 
   def index
     @is_archive = params[:archived].nil? ? false : true
@@ -29,13 +30,11 @@ class TradesController < ApplicationController
   end
 
   def update
-    trade = Trade.find(params[:id])
-    trade.update(status: params[:status].to_i)
+    @trade.update(status: params[:status].to_i)
     redirect_to trades_path
   end
 
   def destroy
-    @trade = Trade.find(params[:id])
     if @trade.destroy
       flash[:warning] = 'Oferta została cofnięta.'
     else
@@ -45,12 +44,15 @@ class TradesController < ApplicationController
   end
 
   def archive
-    trade = Trade.find(params[:trade_id])
-    trade.update(archived: !trade.archived)
+    @trade.update(archived: !@trade.archived)
     redirect_to trades_path
   end
 
   private
+
+  def find_trade
+    @trade = Trade.find(params[:id])
+  end
 
   def trade_params
     params.require(:trade).permit(:owner_id, :owner_item_id, :trader_item_id)

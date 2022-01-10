@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
+  before_action :require_user, only: [:edit, :update, :destroy, :change_password]
+  before_action :find_user, only: [:show, :edit, :update, :change_password]
 
   def show
-    @user = User.find(params[:id])
     @can_edit = logged_in? && current_user.username == @user.username
   end
 
@@ -21,12 +22,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:success] = 'Twoje dane zostały zaktualizowane.'
       redirect_to @user
@@ -35,22 +33,21 @@ class UsersController < ApplicationController
     end
   end
 
-  def shelf
-    @user = User.find(params[:id])
-  end
-
   def change_password
-    user = User.find(params[:id])
-    if user.authenticate(params[:old_password])
-      user.update(password: params[:password])
+    if @user.authenticate(params[:old_password])
+      @user.update(password: params[:password])
       flash[:success] = 'Hasło zostało zmienione'
     else
       flash[:warning] = 'Hasło nieprawidłowe'
     end
-    redirect_to edit_user_path user
+    redirect_to edit_user_path @user
   end
 
   private
+
+  def find_user
+    @user = User.find(params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:name, :surname, :username, :email, :password, :bio, :place, :latitude, :longitude)

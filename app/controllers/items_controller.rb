@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :require_user, only: [:new, :create, :destroy]
+  before_action :require_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :find_item, only: [:show, :edit, :update, :destroy]
 
   def index
     if session[:filter] != nil
@@ -9,24 +10,17 @@ class ItemsController < ApplicationController
     end
   end
 
-  def show
-    @item = Item.find(params[:id])
-  end
-
   def new
-    @user = current_user
     @item = Item.new
   end
-  
-  def edit
-    @user = current_user
-    @item = Item.find(params[:id])
-  end
+
+  def show; end
+
+  def edit; end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update(item_params)
-      flash[:success] = 'Dane przedmiotu zostały zaktualizowane.'
+      flash[:success] = 'Dane przedmiotu zostały zaktualizowane'
       redirect_to @item
     else
       render 'edit'
@@ -34,7 +28,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @user = current_user
     @item = Item.new(item_params)
     if ActiveModel::Type::Boolean.new.cast(params[:item][:correct])
       @item.user = current_user
@@ -54,13 +47,12 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:id])
     if @item.destroy
       redirect_to items_path
       flash[:success] = 'Przedmiot został usunięty'
     else
       redirect_to @item
-      flash[:warning] = 'Nie udało się usunąć oj'
+      flash[:warning] = 'Nie udało się usunąć przedmiotu. Spróbuj ponownie'
     end
   end
 
@@ -74,6 +66,10 @@ class ItemsController < ApplicationController
   end
 
   private
+
+  def find_item
+    @item = Item.find(params[:id])
+  end
 
   def create_item_genres(genres, item_id)
     if genres
