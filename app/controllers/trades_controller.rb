@@ -19,7 +19,7 @@ class TradesController < ApplicationController
     @trade.trader_id = current_user.id
     if @trade.save
       flash[:success] = 'Oferta została wysłana do właściciela.'
-      redirect_to items_path
+      redirect_to root_path
     else
       flash[:warning] = @trade.errors.full_messages
       @item = Item.find(params[:trade][:owner_item_id])

@@ -23,6 +23,7 @@ class ItemsController < ApplicationController
       flash[:success] = 'Dane przedmiotu zostały zaktualizowane'
       redirect_to @item
     else
+      flash[:warning] = @item.errors.full_messages
       render 'edit'
     end
   end
@@ -48,7 +49,7 @@ class ItemsController < ApplicationController
 
   def destroy
     if @item.destroy
-      redirect_to items_path
+      redirect_to root_path
       flash[:success] = 'Przedmiot został usunięty'
     else
       redirect_to @item

@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:success] = "Witaj #{@user.username}! Twoje konto zostało poprawie utworzone."
-      redirect_to items_path
+      redirect_to root_path
     else 
       flash[:warning] = @user.errors.full_messages
       render :new
@@ -29,6 +29,7 @@ class UsersController < ApplicationController
       flash[:success] = 'Twoje dane zostały zaktualizowane.'
       redirect_to @user
     else
+      flash[:warning] = @user.errors.full_messages
       render 'edit'
     end
   end
