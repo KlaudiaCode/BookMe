@@ -2,7 +2,7 @@
   <% if @can_edit %>
     TWOJE KONTO
   <% else %>
-  <%= @user.username %>
+    <%= @user.username %>
   <% end %>
 </h1>
 
@@ -11,9 +11,7 @@
     <% if @user.place && @user.place != "" %>
       <h6><i class="bi-geo-alt-fill"></i> <%= @user.place %></h6>
     <% end %>
-  
     <h6> <%= @user.bio && @user.bio != "" ? @user.bio : "Ten użytkownik nie podał żadnych informacji o sobie." %></h6>
-
     <% if @can_edit %>
       <hr/>
       <h5>Dane osobowe</h5>
@@ -29,7 +27,6 @@
 
 <div class="d-flex flex-column">
   <h1 class="text-center mt-4">PÓŁKA</h1>
-
   <div class="row g-3 mb-5">
     <% @user.items.each do |item| %>
       <%= render partial: 'items/item', locals: { item: item, can_edit: @can_edit, in_trade: false } %>

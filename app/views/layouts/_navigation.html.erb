@@ -4,7 +4,6 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto flex-grow-1">
       <li class="nav-item dropdown">
@@ -22,8 +21,7 @@
             <%= link_to "Oferty", trades_path, class:"dropdown-item"%>
             <%= link_to "Archiwum ofert", trades_path(archived: true), class:"dropdown-item"%>
             <%= link_to new_item_path, class: "dropdown-item" do %> 
-              Dodaj <i class="bi-book"></i> /
-              <i class="bi-dice-3"></i>
+              Dodaj <i class="bi-book"></i> / <i class="bi-dice-3"></i>
             <% end %>
             <%= button_to 'Wyloguj', logout_path, class: "dropdown-item text-danger", method: :delete %>
           <% else %>
@@ -34,7 +32,6 @@
               <%= link_to 'Rejestracja', new_user_path, class: "nav-link" %>
             </li>
           <% end%>
-
         </div>
       </li>
     </ul>
