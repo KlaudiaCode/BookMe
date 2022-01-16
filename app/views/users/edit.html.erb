@@ -24,6 +24,11 @@
       </div>
 
       <div class="mb-3">
+        <%= form.label :phone, 'Numer telefonu', class: 'form-label' %>
+        <%= form.text_field :phone, class: 'form-control bg-light'  %>
+      </div>
+
+      <div class="mb-3">
         <%= form.label :bio, 'O mnie', class: 'form-label' %>
         <%= form.text_area :bio, class: 'form-control bg-light'  %>
       </div>
