@@ -19,7 +19,6 @@
             <div class="dropdown-divider"></div>
             <%= link_to "Profil", user_path(current_user), class: "dropdown-item" %>
             <%= link_to "Oferty", trades_path, class:"dropdown-item"%>
-            <%= link_to "Archiwum ofert", trades_path(archived: true), class:"dropdown-item"%>
             <%= link_to new_item_path, class: "dropdown-item" do %> 
               Dodaj <i class="bi-book"></i> / <i class="bi-dice-3"></i>
             <% end %>

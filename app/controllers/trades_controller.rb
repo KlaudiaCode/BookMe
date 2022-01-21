@@ -3,9 +3,8 @@ class TradesController < ApplicationController
   before_action :find_trade, only: [:update, :destroy, :archive]
 
   def index
-    @is_archive = params[:archived].nil? ? false : true
-    @my_trades = Trade.where(trader_id: current_user.id).where(archived: @is_archive)
-    @received_trades = Trade.where(owner_id: current_user.id).where(archived: @is_archive)
+    @my_trades = Trade.where(trader_id: current_user.id)
+    @received_trades = Trade.where(owner_id: current_user.id)
   end
 
   def new
