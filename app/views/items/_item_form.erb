@@ -1,0 +1,96 @@
+<div data-controller="maps itemType" class="row justify-content-center mb-5">
+  <div class="col-8 bg-white p-4 rounded">
+    <%= form_with model: @item do |form| %>
+      <div class="mb-4">
+        <%= form.label :title, 'Tytuł', class: 'form-label' %>
+        <%= form.text_field :title, class: 'form-control bg-light' %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :condition_id, 'Zdjęcia', class: 'form-label' %>
+        <%= form.file_field :images, multiple: true, class: 'form-control bg-light' %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :description, 'Opis', class: 'form-label' %>
+        <%= form.text_area :description, rows: 5, class: 'form-control bg-light' %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :author, 'Autor', class: 'form-label' %>
+        <%= form.text_field :author, class: 'form-control bg-light' %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :publisher, 'Wydawnictwo', class: 'form-label' %>
+        <%= form.text_field :publisher, class: 'form-control bg-light' %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :condition_id, 'Stan', class: 'form-label' %>
+        <%= form.collection_select :condition_id, Condition.order(:name), :id, :name, {}, { class: 'form-select bg-light' }  %>
+      </div>
+
+      <%= form.hidden_field :switch, value: @item.group, data: { 'itemType-target': 'switch' } %>
+
+      <div class="mb-4">
+        <%= form.radio_button :group, false, class: 'btn-check', id: 'book_radio', data: { action: "click->itemType#hide" } %>
+        <label class="btn btn-outline-primary" for="book_radio">Książka</label>
+        <%= form.radio_button :group, true, class: 'btn-check', id: 'game_radio', data: { action: "click->itemType#show" } %>
+        <label class="btn btn-outline-primary" for="game_radio">Gra</label>
+      </div>
+
+      <div class="mb-4" data-controller="genres">
+        <div class="dropdown dropend">
+          <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+            Kategorie
+          </button>
+          <div class="dropdown-menu">
+            <input type="text" class="form-control bg-light" placeholder="Zacznij wpisywać..." data-action="genres#search">
+            <div class="dropdown-divider"></div>
+            <% Genre.all.each do |genre| %>
+              <a class="dropdown-item <%= "d-none" if @item.genres.include? genre %>" href="#" <%= "data-chosen=true" if @item.genres.include? genre %> id="<%= genre.id %>" data-genres-target="item" data-genres-name-param="<%= genre.name %>" data-action="click->genres#chosen"><%= genre.name %></a>
+            <% end %>
+          </div>
+        </div>
+        <div class="mt-2" data-genres-target="container">
+          <% @item.genres.each do |genre| %>
+            <div>
+              <span class="badge bg-primary me-1"><%= genre.name %>
+                <button data-action="genres#removeGenre" data-id="<%= genre.id %>" type="button" aria-label="Close" class="btn-close btn-close-white ms-1"></button>
+              </span>
+              <input value="<%= genre.id %>" type="hidden" name="item[genres][]"/>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div data-itemType-target="container">
+        <div class="mb-4">
+          <%= form.label :player_min, 'Minimalna liczba graczy', class: 'form-label' %>
+          <%= form.text_field :player_min, class: 'form-control bg-light' %>
+        </div>
+
+        <div class="mb-4">
+          <%= form.label :player_max, 'Maksymalna liczba graczy', class: 'form-label' %>
+          <%= form.text_field :player_max, class: 'form-control bg-light' %>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :place, 'Lokalizacja', class: 'form-label' %>
+        <%= form.search_field :place, value: current_user.place, data: { 'maps-target': "location", action: "keydown->maps#preventSubmit" }, class: 'form-control bg-light' %>
+      </div>
+
+      <%= form.hidden_field :latitude, value: current_user.latitude, data: { 'maps-target': 'latitude' } %>
+      <%= form.hidden_field :longitude, value: current_user.longitude, data: { 'maps-target': 'longitude' } %>
+      <%= form.hidden_field :correct, value: !!current_user.place, data: { 'maps-target': 'correctPlace' } %>
+
+      <%= content_tag :div, nil, data: { 'maps-target': "map" }, class: 'map mb-4' %>
+
+      <div class="mb-4">
+        <%= form.submit 'Zapisz', class: 'btn btn-primary w-100' %>
+      </div>
+    <% end %>
+  </div>
+</div>

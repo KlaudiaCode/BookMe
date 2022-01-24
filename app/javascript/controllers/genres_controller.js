@@ -49,6 +49,6 @@ export default class extends Controller {
     const item = this.itemTargets.find(({id}) => id === event.target.dataset.id)
     item.classList.remove('d-none')
     item.removeAttribute('data-chosen')
-    event.target.parentElement.remove()
+    event.target.parentElement.parentElement.remove()
   }
 }

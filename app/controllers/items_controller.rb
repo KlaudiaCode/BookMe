@@ -20,6 +20,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
+      create_item_genres params[:item][:genres], @item
       flash[:success] = 'Dane przedmiotu zostały zaktualizowane'
       redirect_to @item
     else
@@ -34,7 +35,7 @@ class ItemsController < ApplicationController
       @item.user = current_user
 
       if @item.save
-        create_item_genres params[:item][:genres], @item.id
+        create_item_genres params[:item][:genres], @item
         flash[:success] = 'Przedmiot został dodany'
         redirect_to @item
       else
@@ -72,10 +73,11 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def create_item_genres(genres, item_id)
+  def create_item_genres(genres, item)
+    item.item_genres.destroy_all
     if genres
       genres.each do |genre|
-        ItemGenre.create(item_id: item_id, genre_id: genre.to_i)
+        ItemGenre.create(item_id: item.id, genre_id: genre.to_i)
       end
     end
   end

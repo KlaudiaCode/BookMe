@@ -15,7 +15,8 @@ export default class extends Controller {
   }
 
   toggle(){
-    if(this.switchTarget.value == "false"){
+    console.log(this.switchTarget.value)
+    if(this.switchTarget.value == "false" || this.switchTarget.value == ""){
       this.containerTarget.classList.remove("d-flex")
       this.containerTarget.classList.add("d-none")
 
